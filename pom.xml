@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.wing4j</groupId>
+        <artifactId>wing4j-family</artifactId>
+        <version>1.0.2</version>
+    </parent>
+    <groupId>org.wing4j.litebatis</groupId>
+    <artifactId>litebatis</artifactId>
+    <name>litebatis</name>
+    <packaging>pom</packaging>
+    <description>This is the wing4j-family member wing4j-litebatis</description>
+    <url>http://git.oschina.net/wing4j</url>
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses</url>
+        </license>
+    </licenses>
+    <modules>
+        <module>litebatis-api</module>
+        <module>litebatis-core</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+</project>
