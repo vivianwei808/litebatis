@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.session;
+package org.wing4j.litebatis.session.defaults;
 
 import org.wing4j.orm.litebatis.session.SqlSession;
 
