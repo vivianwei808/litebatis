@@ -1,11 +1,10 @@
 package org.wing4j.litebatis.configuration;
 
-import org.wing4j.orm.litebatis.*;
-import org.wing4j.orm.litebatis.executor.Executor;
-import org.wing4j.orm.litebatis.mapping.MappedStatement;
-import org.wing4j.orm.litebatis.reflection.MetaObject;
-import org.wing4j.orm.litebatis.session.SqlSession;
-import org.wing4j.orm.litebatis.transaction.Transaction;
+import org.wing4j.litebatis.executor.Executor;
+import org.wing4j.litebatis.mapping.MappedStatement;
+import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.session.SqlSession;
+import org.wing4j.litebatis.transaction.Transaction;
 
 import java.util.Collection;
 

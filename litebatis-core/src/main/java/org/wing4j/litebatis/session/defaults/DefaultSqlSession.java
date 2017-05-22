@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.session.defaults;
 
-import org.wing4j.orm.litebatis.session.SqlSession;
+import org.wing4j.litebatis.session.SqlSession;
 
 import java.util.List;
 

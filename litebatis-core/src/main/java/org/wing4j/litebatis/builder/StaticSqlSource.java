@@ -1,9 +1,9 @@
 package org.wing4j.litebatis.builder;
 
-import org.wing4j.orm.litebatis.Configuration;
-import org.wing4j.orm.litebatis.mapping.BoundSql;
-import org.wing4j.orm.litebatis.mapping.ParameterMapping;
-import org.wing4j.orm.litebatis.mapping.SqlSource;
+import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.mapping.BoundSql;
+import org.wing4j.litebatis.mapping.ParameterMapping;
+import org.wing4j.litebatis.mapping.SqlSource;
 
 import java.util.List;
 

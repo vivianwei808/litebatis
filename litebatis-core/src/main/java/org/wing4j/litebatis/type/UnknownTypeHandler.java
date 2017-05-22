@@ -16,7 +16,6 @@
 package org.wing4j.litebatis.type;
 
 import org.apache.ibatis.io.Resources;
-import org.wing4j.orm.litebatis.type.TypeException;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -29,9 +28,9 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
 
   private static final ObjectTypeHandler OBJECT_TYPE_HANDLER = new ObjectTypeHandler();
 
-  private TypeHandlerRegistry typeHandlerRegistry;
+  private DefaultTypeHandlerRegistry typeHandlerRegistry;
 
-  public UnknownTypeHandler(TypeHandlerRegistry typeHandlerRegistry) {
+  public UnknownTypeHandler(DefaultTypeHandlerRegistry typeHandlerRegistry) {
     this.typeHandlerRegistry = typeHandlerRegistry;
   }
 

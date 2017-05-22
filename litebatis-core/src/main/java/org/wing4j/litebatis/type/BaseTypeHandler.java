@@ -15,9 +15,8 @@
  */
 package org.wing4j.litebatis.type;
 
-import org.wing4j.orm.litebatis.Configuration;
-import org.wing4j.orm.litebatis.executor.result.ResultMapException;
-import org.wing4j.orm.litebatis.type.TypeException;
+import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.executor.result.ResultMapException;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
