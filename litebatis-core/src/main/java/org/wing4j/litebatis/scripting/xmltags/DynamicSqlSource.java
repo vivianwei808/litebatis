@@ -2,6 +2,7 @@ package org.wing4j.litebatis.scripting.xmltags;
 
 import lombok.AllArgsConstructor;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.builder.SqlSourceBuilder;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.SqlSource;
 
@@ -17,7 +18,7 @@ public class DynamicSqlSource implements SqlSource {
 
     @Override
     public BoundSql getBoundSql(Object parameterObject) {
-        DynamicContext context = new DynamicContext(configuration, parameterObject);
+        DynamicContext context = new DefaultDynamicContext(configuration, parameterObject);
         rootSqlNode.apply(context);
         SqlSourceBuilder sqlSourceParser = new SqlSourceBuilder(configuration);
         Class<?> parameterType = parameterObject == null ? Object.class : parameterObject.getClass();
