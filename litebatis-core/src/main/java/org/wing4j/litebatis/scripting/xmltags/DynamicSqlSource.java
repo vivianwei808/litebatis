@@ -19,6 +19,7 @@ public class DynamicSqlSource implements SqlSource {
     @Override
     public BoundSql getBoundSql(Object parameterObject) {
         DynamicContext context = new DefaultDynamicContext(configuration, parameterObject);
+        //将含有mybatis占位符的SQL语句添加到上下文，如果是动态SQL，会根据参数对象的值进行动态添加
         rootSqlNode.apply(context);
         SqlSourceBuilder sqlSourceParser = new SqlSourceBuilder(configuration);
         Class<?> parameterType = parameterObject == null ? Object.class : parameterObject.getClass();

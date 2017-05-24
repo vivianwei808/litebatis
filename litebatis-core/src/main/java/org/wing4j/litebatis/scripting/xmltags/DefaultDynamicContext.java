@@ -47,7 +47,7 @@ public class DefaultDynamicContext implements DynamicContext {
 
     public void appendSql(String sql) {
         sqlBuilder.append(sql);
-        sqlBuilder.append(" ");
+//        sqlBuilder.append(" ");
     }
 
     public String getSql() {
