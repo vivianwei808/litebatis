@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.scripting.xmltag;
 
-import org.wing4j.litebatis.builder.BuilderException;
+import org.wing4j.litebatis.exception.BuilderException;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;

@@ -9,6 +9,7 @@
         <version>1.0.2</version>
     </parent>
     <artifactId>litebatis-api</artifactId>
+    <name>litebatis API</name>
     <description>This is the wing4j-litebatis member wing4j-orm-litebatis</description>
     <url>http://git.oschina.net/wing4j</url>
     <licenses>

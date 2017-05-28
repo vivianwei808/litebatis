@@ -5,6 +5,7 @@ import org.wing4j.litebatis.cache.CacheException;
 import org.wing4j.litebatis.cache.decorators.*;
 import org.wing4j.litebatis.cache.impl.PerpetualCache;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.SystemMetaObject;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

@@ -3,9 +3,15 @@ package org.wing4j.litebatis.builder;
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.cache.decorators.LruCache;
 import org.wing4j.litebatis.cache.impl.PerpetualCache;
+import org.wing4j.litebatis.exception.BuilderException;
+import org.wing4j.litebatis.exception.IncompleteElementException;
 import org.wing4j.litebatis.executor.ErrorContext;
+import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.type.JdbcType;
+import org.wing4j.litebatis.type.TypeHandler;
 
+import java.util.List;
 import java.util.Properties;
 
 public class MapperBuilderAssistant extends BaseBuilder {
@@ -102,7 +108,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
 
   public ParameterMap addParameterMap(String id, Class<?> parameterClass, List<ParameterMapping> parameterMappings) {
     id = applyCurrentNamespace(id, false);
-    ParameterMap.Builder parameterMapBuilder = new ParameterMap.Builder(configuration, id, parameterClass, parameterMappings);
+    DefaultParameterMap.Builder parameterMapBuilder = new DefaultParameterMap.Builder(configuration, id, parameterClass, parameterMappings);
     ParameterMap parameterMap = parameterMapBuilder.build();
     configuration.addParameterMap(parameterMap);
     return parameterMap;

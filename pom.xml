@@ -24,6 +24,7 @@
         <module>litebatis-dynamic</module>
         <module>litebatis-xml</module>
         <module>litebatis-annotation</module>
+        <module>litebatis-base</module>
     </modules>
     <dependencyManagement>
         <dependencies>

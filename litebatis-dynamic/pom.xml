@@ -9,6 +9,7 @@
         <version>1.0.2</version>
     </parent>
     <artifactId>litebatis-dynamic</artifactId>
+    <name>litebatis动态语句支持</name>
     <dependencies>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>

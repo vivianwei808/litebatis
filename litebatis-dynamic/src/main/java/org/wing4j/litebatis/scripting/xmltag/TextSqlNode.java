@@ -3,7 +3,7 @@ package org.wing4j.litebatis.scripting.xmltag;
 import org.wing4j.litebatis.parsing.GenericTokenParser;
 import org.wing4j.litebatis.parsing.TokenHandler;
 import org.wing4j.litebatis.scripting.DynamicContext;
-import org.wing4j.litebatis.scripting.ScriptingException;
+import org.wing4j.litebatis.exception.ScriptingException;
 import org.wing4j.litebatis.scripting.SqlNode;
 import org.wing4j.litebatis.type.SimpleTypeRegistry;
 

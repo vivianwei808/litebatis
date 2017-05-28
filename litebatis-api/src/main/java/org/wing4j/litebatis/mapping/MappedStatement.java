@@ -1,5 +1,6 @@
 package org.wing4j.litebatis.mapping;
 
+import org.wing4j.litebatis.executor.keygen.KeyGenerator;
 import org.wing4j.litebatis.session.Configuration;
 
 /**
@@ -14,4 +15,12 @@ public interface MappedStatement {
     BoundSql getBoundSql(Object parameterObject);
     Configuration getConfiguration();
     ParameterMap getParameterMap();
+    String[] getKeyProperties();
+    String[] getKeyColumns();
+    Integer getTimeout();
+    Integer getFetchSize();
+    KeyGenerator getKeyGenerator();
+    ResultSetType getResultSetType();
+    StatementType getStatementType();
+    String getResource();
 }

@@ -9,6 +9,7 @@
         <version>1.0.2</version>
     </parent>
     <artifactId>litebatis-xml</artifactId>
+    <name>litebatisXML封装</name>
     <dependencies>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>

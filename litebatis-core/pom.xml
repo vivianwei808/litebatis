@@ -9,18 +9,11 @@
         <version>1.0.2</version>
     </parent>
     <artifactId>litebatis-core</artifactId>
-    <description>This is the wing4j-orm member wing4j-orm-litebatis</description>
-    <url>http://git.oschina.net/wing4j</url>
-    <licenses>
-        <license>
-            <name>Apache License Version 2.0</name>
-            <url>http://www.apache.org/licenses</url>
-        </license>
-    </licenses>
+    <name>litebatis核心实现</name>
     <dependencies>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
-            <artifactId>litebatis-api</artifactId>
+            <artifactId>litebatis-base</artifactId>
             <version>1.0.2</version>
         </dependency>
         <dependency>

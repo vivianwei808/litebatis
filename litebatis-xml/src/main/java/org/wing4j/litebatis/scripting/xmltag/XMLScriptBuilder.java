@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.wing4j.litebatis.session.Configuration;
 import org.wing4j.litebatis.builder.BaseBuilder;
-import org.wing4j.litebatis.builder.BuilderException;
+import org.wing4j.litebatis.exception.BuilderException;
 import org.wing4j.litebatis.mapping.SqlSource;
 import org.wing4j.litebatis.parsing.XNode;
 import org.wing4j.litebatis.scripting.RawSqlSource;

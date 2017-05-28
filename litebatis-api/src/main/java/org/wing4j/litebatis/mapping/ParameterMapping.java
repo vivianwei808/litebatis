@@ -11,4 +11,6 @@ public interface ParameterMapping {
     ParameterMode getMode();
     JdbcType getJdbcType();
     TypeHandler<?> getTypeHandler();
+    Integer getNumericScale();
+    String getJdbcTypeName();
 }

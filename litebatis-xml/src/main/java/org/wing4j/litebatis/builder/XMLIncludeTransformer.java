@@ -8,6 +8,8 @@ import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.session.Configuration;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.wing4j.litebatis.exception.BuilderException;
+import org.wing4j.litebatis.exception.IncompleteElementException;
 
 import java.util.Properties;
 

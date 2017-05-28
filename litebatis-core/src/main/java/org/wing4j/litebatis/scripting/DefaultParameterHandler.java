@@ -9,7 +9,7 @@ import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.type.JdbcType;
-import org.wing4j.litebatis.type.TypeException;
+import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.type.TypeHandler;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 

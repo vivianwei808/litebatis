@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.datasource.unpooled;
 
 
-import org.wing4j.litebatis.datasource.DataSourceException;
+import org.wing4j.litebatis.exception.DataSourceException;
 import org.wing4j.litebatis.datasource.DataSourceFactory;
 import org.wing4j.litebatis.reflection.MetaObject;
 

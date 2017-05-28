@@ -6,28 +6,28 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.apache.ibatis.builder.BaseBuilder;
-import org.apache.ibatis.builder.BuilderException;
-import org.apache.ibatis.datasource.DataSourceFactory;
-import org.apache.ibatis.executor.ErrorContext;
-import org.apache.ibatis.executor.loader.ProxyFactory;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.mapping.DatabaseIdProvider;
-import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.parsing.XNode;
-import org.apache.ibatis.parsing.XPathParser;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.reflection.DefaultReflectorFactory;
-import org.apache.ibatis.reflection.MetaClass;
-import org.apache.ibatis.reflection.ReflectorFactory;
-import org.apache.ibatis.reflection.factory.ObjectFactory;
-import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
-import org.apache.ibatis.session.AutoMappingBehavior;
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.LocalCacheScope;
-import org.apache.ibatis.transaction.TransactionFactory;
-import org.apache.ibatis.type.JdbcType;
+import org.wing4j.litebatis.builder.BaseBuilder;
+import org.wing4j.litebatis.datasource.DataSourceFactory;
+import org.wing4j.litebatis.executor.ErrorContext;
+import org.wing4j.litebatis.executor.loader.ProxyFactory;
+import org.wing4j.litebatis.io.Resources;
+import org.wing4j.litebatis.mapping.DatabaseIdProvider;
+import org.wing4j.litebatis.mapping.Environment;
+import org.wing4j.litebatis.parsing.XNode;
+import org.wing4j.litebatis.parsing.XPathParser;
+import org.wing4j.litebatis.plugin.Interceptor;
+import org.wing4j.litebatis.reflection.DefaultReflectorFactory;
+import org.wing4j.litebatis.reflection.MetaClass;
+import org.wing4j.litebatis.reflection.ReflectorFactory;
+import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.reflection.wrapper.ObjectWrapperFactory;
+import org.wing4j.litebatis.session.AutoMappingBehavior;
+import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.session.ExecutorType;
+import org.wing4j.litebatis.session.LocalCacheScope;
+import org.wing4j.litebatis.transaction.TransactionFactory;
+import org.wing4j.litebatis.type.JdbcType;
+import org.wing4j.litebatis.exception.BuilderException;
 
 /**
  * XMLConfigBuilder ：负责将mybatis-config.xml配置文件解析成Configuration对象，

@@ -2,6 +2,7 @@ package org.wing4j.litebatis.type;
 
 
 import org.wing4j.litebatis.JdbcType;
+import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.io.ResolverUtil;
 
 import java.lang.reflect.Constructor;

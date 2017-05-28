@@ -31,6 +31,8 @@ import org.apache.ibatis.parsing.XPathParser;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
+import org.wing4j.litebatis.exception.BuilderException;
+import org.wing4j.litebatis.exception.IncompleteElementException;
 
 /**
  * xml mapper解析

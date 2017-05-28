@@ -2,7 +2,7 @@ package org.wing4j.litebatis.scripting.xmltag;
 
 import ognl.Ognl;
 import ognl.OgnlException;
-import org.wing4j.litebatis.builder.BuilderException;
+import org.wing4j.litebatis.exception.BuilderException;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
