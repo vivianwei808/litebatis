@@ -6,4 +6,5 @@ package org.wing4j.litebatis.type;
 public interface TypeHandlerRegistry {
     TypeHandler<?> getMappingTypeHandler(Class<? extends TypeHandler<?>> handlerType);
     <T> TypeHandler<T> getInstance(Class<?> javaTypeClass, Class<?> typeHandlerClass);
+    boolean hasTypeHandler(Class<?> javaType);
 }

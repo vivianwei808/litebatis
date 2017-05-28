@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.scripting.xmltags;
+package org.wing4j.litebatis.scripting;
 
 public interface SqlNode {
   boolean apply(DynamicContext context);

@@ -1,10 +1,13 @@
-package org.wing4j.litebatis.scripting.xmltags;
+package org.wing4j.litebatis.scripting.xmltag;
 
 import lombok.AllArgsConstructor;
-import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.session.Configuration;
 import org.wing4j.litebatis.builder.SqlSourceBuilder;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.SqlSource;
+import org.wing4j.litebatis.scripting.DefaultDynamicContext;
+import org.wing4j.litebatis.scripting.DynamicContext;
+import org.wing4j.litebatis.scripting.SqlNode;
 
 import java.util.Map;
 

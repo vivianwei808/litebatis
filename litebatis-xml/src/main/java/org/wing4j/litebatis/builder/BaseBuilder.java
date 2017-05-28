@@ -1,9 +1,12 @@
 package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.session.Configuration;
-import org.wing4j.litebatis.type.*;
+import org.wing4j.litebatis.JdbcType;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.mapping.ResultSetType;
+import org.wing4j.litebatis.type.TypeAliasRegistry;
+import org.wing4j.litebatis.type.TypeHandler;
+import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Arrays;
 import java.util.HashSet;

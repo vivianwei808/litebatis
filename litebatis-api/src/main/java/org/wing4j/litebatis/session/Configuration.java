@@ -1,14 +1,17 @@
-package org.wing4j.litebatis;
+package org.wing4j.litebatis.session;
 
+import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.session.SqlSession;
 import org.wing4j.litebatis.transaction.Transaction;
+import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeAliasRegistry;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
+import java.util.Properties;
 
 /**
  * Created by wing4j on 2017/5/16.
@@ -22,6 +25,9 @@ public interface Configuration {
     <T> T getMapper(Class<T> type, SqlSession sqlSession);
     MetaObject newMetaObject(Object object);
     String getDatabaseId();
+    Properties getVariables();
+    JdbcType getJdbcTypeForNull();
+    Cache getCache(String id);
     TypeAliasRegistry getTypeAliasRegistry();
 
     TypeHandlerRegistry getTypeHandlerRegistry();

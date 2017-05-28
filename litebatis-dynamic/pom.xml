@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>litebatis</artifactId>
         <groupId>org.wing4j.litebatis</groupId>
+        <artifactId>litebatis</artifactId>
         <version>1.0.2</version>
     </parent>
-    <artifactId>litebatis-xml</artifactId>
+    <artifactId>litebatis-dynamic</artifactId>
     <dependencies>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
@@ -16,14 +16,9 @@
             <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.wing4j.litebatis</groupId>
-            <artifactId>litebatis-core</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wing4j.litebatis</groupId>
-            <artifactId>litebatis-dynamic</artifactId>
-            <version>1.0.2</version>
+            <groupId>ognl</groupId>
+            <artifactId>ognl</artifactId>
+            <version>3.2</version>
         </dependency>
     </dependencies>
 </project>

@@ -21,6 +21,7 @@
     <modules>
         <module>litebatis-api</module>
         <module>litebatis-core</module>
+        <module>litebatis-dynamic</module>
         <module>litebatis-xml</module>
         <module>litebatis-annotation</module>
     </modules>

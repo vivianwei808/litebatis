@@ -1,5 +1,7 @@
 package org.wing4j.litebatis.mapping;
 
+import org.wing4j.litebatis.session.Configuration;
+
 /**
  * Created by wing4j on 2017/5/15.
  */
@@ -10,4 +12,6 @@ public interface MappedStatement {
      * @return 受限制的SQL对象
      */
     BoundSql getBoundSql(Object parameterObject);
+    Configuration getConfiguration();
+    ParameterMap getParameterMap();
 }
