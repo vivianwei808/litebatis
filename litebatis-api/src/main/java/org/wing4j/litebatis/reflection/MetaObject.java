@@ -3,6 +3,8 @@ package org.wing4j.litebatis.reflection;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.reflection.wrapper.ObjectWrapperFactory;
 
+import java.util.List;
+
 /**
  * Created by wing4j on 2017/5/16.
  */
@@ -19,4 +21,5 @@ public abstract class MetaObject {
         return null;
     }
     public abstract Object getOriginalObject();
+    public abstract <E> void addAll(List<E> list);
 }

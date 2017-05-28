@@ -2,11 +2,13 @@ package org.wing4j.litebatis.configuration;
 
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
-import org.wing4j.litebatis.mapping.MappedStatement;
-import org.wing4j.litebatis.mapping.ParameterMap;
+import org.wing4j.litebatis.executor.parameter.ParameterHandler;
+import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
+import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.reflection.MetaObject;
-import org.wing4j.litebatis.session.Configuration;
-import org.wing4j.litebatis.session.SqlSession;
+import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
 import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeAliasRegistry;
@@ -19,6 +21,16 @@ import java.util.Properties;
  * Created by wing4j on 2017/5/17.
  */
 public class DefaultConfiguration implements Configuration {
+
+    @Override
+    public Environment getEnvironment() {
+        return null;
+    }
+
+    @Override
+    public Executor newExecutor(Transaction transaction, ExecutorType executorType) {
+        return null;
+    }
 
     @Override
     public Executor newExecutor(Transaction transaction) {
@@ -86,9 +98,45 @@ public class DefaultConfiguration implements Configuration {
     }
 
     @Override
-    public TypeAliasRegistry getTypeAliasRegistry() {
+    public boolean isUseColumnLabel() {
+        return false;
+    }
+
+    @Override
+    public Integer getDefaultStatementTimeout() {
         return null;
     }
+
+    @Override
+    public Integer getDefaultFetchSize() {
+        return null;
+    }
+
+    @Override
+    public ResultMap getResultMap(String id) {
+        return null;
+    }
+
+    @Override
+    public ObjectFactory getObjectFactory() {
+        return null;
+    }
+
+    @Override
+    public ParameterHandler newParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
+        return null;
+    }
+
+    @Override
+    public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
+        return null;
+    }
+
+    @Override
+    public LocalCacheScope getLocalCacheScope() {
+        return null;
+    }
+
 
     @Override
     public TypeHandlerRegistry getTypeHandlerRegistry() {

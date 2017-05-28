@@ -6,7 +6,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.wing4j.litebatis.builder.BaseBuilder;
 import org.wing4j.litebatis.datasource.DataSourceFactory;
 import org.wing4j.litebatis.executor.ErrorContext;
 import org.wing4j.litebatis.executor.loader.ProxyFactory;
@@ -22,7 +21,7 @@ import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.reflection.wrapper.ObjectWrapperFactory;
 import org.wing4j.litebatis.session.AutoMappingBehavior;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.ExecutorType;
 import org.wing4j.litebatis.session.LocalCacheScope;
 import org.wing4j.litebatis.transaction.TransactionFactory;

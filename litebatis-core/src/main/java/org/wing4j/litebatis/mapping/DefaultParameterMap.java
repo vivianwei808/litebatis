@@ -1,10 +1,9 @@
 package org.wing4j.litebatis.mapping;
 
 import lombok.Data;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

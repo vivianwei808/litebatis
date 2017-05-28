@@ -2,7 +2,7 @@ package org.wing4j.litebatis.scripting.xmltag;
 
 
 import org.wing4j.litebatis.scripting.DefaultParameterHandler;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;

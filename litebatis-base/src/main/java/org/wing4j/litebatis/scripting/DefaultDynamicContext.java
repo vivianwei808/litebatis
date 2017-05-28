@@ -4,7 +4,7 @@ import ognl.OgnlContext;
 import ognl.OgnlException;
 import ognl.OgnlRuntime;
 import ognl.PropertyAccessor;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.reflection.MetaObject;
 
 import java.util.HashMap;

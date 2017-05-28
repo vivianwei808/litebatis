@@ -2,7 +2,7 @@ package org.wing4j.litebatis.executor.resultset;
 
 import org.wing4j.litebatis.io.Resources;
 import org.wing4j.litebatis.mapping.ResultMap;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.type.*;
 
 import java.sql.ResultSet;

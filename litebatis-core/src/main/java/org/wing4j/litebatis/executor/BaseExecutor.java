@@ -7,7 +7,7 @@ import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.LocalCacheScope;
 import org.wing4j.litebatis.session.ResultHandler;
 import org.wing4j.litebatis.session.RowBounds;
@@ -317,7 +317,7 @@ public abstract class BaseExecutor implements Executor {
 
     private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
         List<E> list;
-        localCache.putObject(key, EXECUTION_PLACEHOLDER);
+        localCache.putObject(key, ExecutionPlaceholder.EXECUTION_PLACEHOLDER);
         try {
             //4. 执行查询，返回List 结果，然后将查询的结果放入缓存之中
             list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);
@@ -336,7 +336,6 @@ public abstract class BaseExecutor implements Executor {
         return connection;
     }
 
-    @Override
     public void setExecutorWrapper(Executor wrapper) {
         this.wrapper = wrapper;
     }
@@ -368,7 +367,7 @@ public abstract class BaseExecutor implements Executor {
         }
 
         public boolean canLoad() {
-            return localCache.getObject(key) != null && localCache.getObject(key) != EXECUTION_PLACEHOLDER;
+            return localCache.getObject(key) != null && localCache.getObject(key) != ExecutionPlaceholder.EXECUTION_PLACEHOLDER;
         }
 
         public void load() {

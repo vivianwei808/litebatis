@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.scripting.xmltag;
 
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.parsing.GenericTokenParser;
 import org.wing4j.litebatis.parsing.TokenHandler;
 import org.wing4j.litebatis.scripting.DynamicContext;

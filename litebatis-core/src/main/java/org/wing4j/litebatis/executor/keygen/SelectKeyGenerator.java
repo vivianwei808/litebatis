@@ -4,7 +4,7 @@ import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.reflection.MetaObject;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.ExecutorType;
 import org.wing4j.litebatis.session.RowBounds;
 

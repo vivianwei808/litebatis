@@ -1,9 +1,10 @@
 package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.exception.BuilderException;
+import org.wing4j.litebatis.mapping.DefaultParameterMapping;
 import org.wing4j.litebatis.parsing.TokenHandler;
 import org.wing4j.litebatis.reflection.MetaClass;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.SqlSource;
 import org.wing4j.litebatis.parsing.GenericTokenParser;
@@ -71,7 +72,7 @@ public class SqlSourceBuilder extends BaseBuilder {
       } else {
         propertyType = Object.class;
       }
-      ParameterMapping.Builder builder = new ParameterMapping.Builder(configuration, property, propertyType);
+      DefaultParameterMapping.Builder builder = new DefaultParameterMapping.Builder(configuration, property, propertyType);
       Class<?> javaType = propertyType;
       String typeHandlerAlias = null;
       for (Map.Entry<String, String> entry : propertiesMap.entrySet()) {

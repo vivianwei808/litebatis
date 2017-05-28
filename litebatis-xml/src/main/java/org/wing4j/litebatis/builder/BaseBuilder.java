@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.exception.BuilderException;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.JdbcType;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.mapping.ResultSetType;

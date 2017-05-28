@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by wing4j on 2017/5/28.
+ *
  */
 public interface BatchResult {
     MappedStatement getMappedStatement();

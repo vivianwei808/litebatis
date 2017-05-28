@@ -9,7 +9,7 @@ import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.ResultHandler;
 import org.wing4j.litebatis.session.RowBounds;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;

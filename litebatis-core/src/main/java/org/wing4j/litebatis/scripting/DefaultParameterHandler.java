@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.scripting;
 
 import org.wing4j.litebatis.executor.ErrorContext;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;

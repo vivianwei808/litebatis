@@ -1,5 +1,13 @@
 package org.wing4j.litebatis.executor;
 
+import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.exception.ExecutorException;
+import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+
+import java.lang.reflect.Array;
+import java.util.List;
+
 public class ResultExtractor {
   private final Configuration configuration;
   private final ObjectFactory objectFactory;

@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.exception.BuilderException;
-import org.wing4j.litebatis.session.Configuration;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.type.*;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.mapping.ResultSetType;
@@ -13,12 +13,12 @@ import java.util.regex.Pattern;
 
 public abstract class BaseBuilder {
   protected final Configuration configuration;
-  protected final TypeAliasRegistry typeAliasRegistry;
+  protected final TypeAliasRegistry typeAliasRegistry = null;
   protected final TypeHandlerRegistry typeHandlerRegistry;
 
   public BaseBuilder(Configuration configuration) {
     this.configuration = configuration;
-    this.typeAliasRegistry = this.configuration.getTypeAliasRegistry();
+//    this.typeAliasRegistry = this.configuration.getTypeAliasRegistry();
     this.typeHandlerRegistry = this.configuration.getTypeHandlerRegistry();
   }
 
