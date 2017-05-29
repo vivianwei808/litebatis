@@ -22,19 +22,33 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Slf4j
 public abstract class BaseExecutor implements Executor {
-
-
+    /**
+     * 绑定的事务
+     */
     protected Transaction transaction;
+    /**
+     * 真实的执行器
+     */
     protected Executor wrapper;
 
     protected ConcurrentLinkedQueue<DeferredLoad> deferredLoads;
-    //本地缓存（一级缓存）
+    /**
+     * 本地缓存（一级缓存）
+     */
     protected PerpetualCache localCache;
     protected PerpetualCache localOutputParameterCache;
+    /**
+     * 配置对象
+     */
     protected Configuration configuration;
-
+    /**
+     * 查询栈深度
+     */
     protected int queryStack = 0;
-    private boolean closed;
+    /**
+     * 是否关闭
+     */
+    boolean closed;
 
     protected BaseExecutor(Configuration configuration, Transaction transaction) {
         this.transaction = transaction;
@@ -84,11 +98,16 @@ public abstract class BaseExecutor implements Executor {
 
     @Override
     public int update(MappedStatement ms, Object parameter) throws SQLException {
-        ErrorContext.instance().resource(ms.getResource()).activity("executing an update").object(ms.getId());
+        ErrorContext.instance()
+                .resource(ms.getResource())
+                .activity("executing an update")
+                .object(ms.getId());
         if (closed) {
             throw new ExecutorException("Executor was closed.");
         }
+        //清除一级缓存
         clearLocalCache();
+        //执行更新操作
         return doUpdate(ms, parameter);
     }
 
@@ -279,14 +298,18 @@ public abstract class BaseExecutor implements Executor {
         }
     }
 
-    protected abstract int doUpdate(MappedStatement ms, Object parameter)
-            throws SQLException;
+    /**
+     * 执行更新操作
+     * @param ms 已映射的语句对象
+     * @param parameter 参数对象
+     * @return 影响记录条数
+     * @throws SQLException 异常
+     */
+    protected abstract int doUpdate(MappedStatement ms, Object parameter) throws SQLException;
 
-    protected abstract List<BatchResult> doFlushStatements(boolean isRollback)
-            throws SQLException;
+    protected abstract List<BatchResult> doFlushStatements(boolean isRollback) throws SQLException;
 
-    protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql)
-            throws SQLException;
+    protected abstract <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException;
 
     protected void closeStatement(Statement statement) {
         if (statement != null) {

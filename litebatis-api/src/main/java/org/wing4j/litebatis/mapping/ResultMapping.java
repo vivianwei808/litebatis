@@ -18,4 +18,6 @@ public interface ResultMapping {
     TypeHandler<?> getTypeHandler();
 
     boolean isLazy();
+
+    String getNestedResultMapId();
 }

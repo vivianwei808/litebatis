@@ -75,4 +75,8 @@ public interface Configuration {
     TypeHandlerRegistry getTypeHandlerRegistry();
 
     AutoMappingBehavior getAutoMappingBehavior();
+
+    boolean isSafeRowBoundsEnabled();
+
+    boolean isSafeResultHandlerEnabled();
 }

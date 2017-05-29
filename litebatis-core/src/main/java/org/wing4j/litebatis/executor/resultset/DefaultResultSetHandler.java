@@ -21,6 +21,7 @@ import org.wing4j.litebatis.session.RowBounds;
 import org.wing4j.litebatis.type.TypeHandler;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
+import java.lang.reflect.Constructor;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

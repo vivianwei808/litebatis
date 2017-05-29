@@ -71,4 +71,6 @@ public interface MappedStatement {
     boolean isFlushCacheRequired();
 
     List<ResultMap> getResultMaps();
+    String[] getResulSets();
+    boolean isResultOrdered();
 }

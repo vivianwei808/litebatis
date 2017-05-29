@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.builder;
+package org.wing4j.litebatis.scripting;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.mapping.BoundSql;

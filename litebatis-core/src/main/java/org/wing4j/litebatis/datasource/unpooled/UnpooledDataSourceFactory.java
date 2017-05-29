@@ -4,6 +4,7 @@ package org.wing4j.litebatis.datasource.unpooled;
 import org.wing4j.litebatis.exception.DataSourceException;
 import org.wing4j.litebatis.datasource.DataSourceFactory;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.SystemMetaObject;
 
 import javax.sql.DataSource;
 import java.util.Properties;

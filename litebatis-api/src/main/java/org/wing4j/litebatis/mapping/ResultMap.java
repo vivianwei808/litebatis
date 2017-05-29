@@ -31,4 +31,5 @@ public interface ResultMap {
 
     Boolean getAutoMapping();
     List<ResultMapping> getPropertyResultMappings();
+    boolean hasNestedResultMaps();
 }

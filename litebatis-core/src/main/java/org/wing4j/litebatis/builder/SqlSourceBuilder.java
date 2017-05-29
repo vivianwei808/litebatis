@@ -9,6 +9,7 @@ import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.SqlSource;
 import org.wing4j.litebatis.parsing.GenericTokenParser;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.scripting.StaticSqlSource;
 import org.wing4j.litebatis.type.JdbcType;
 
 import java.util.ArrayList;

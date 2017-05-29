@@ -180,7 +180,7 @@ public class UnpooledDataSource implements DataSource {
 
   private synchronized void initializeDriver() throws SQLException {
     if (!registeredDrivers.containsKey(driver)) {
-      Class<?> driverType;
+      Class<?> driverType = null;
       try {
         if (driverClassLoader != null) {
           driverType = Class.forName(driver, true, driverClassLoader);

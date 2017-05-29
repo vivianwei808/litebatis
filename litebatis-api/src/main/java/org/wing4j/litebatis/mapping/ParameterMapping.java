@@ -49,4 +49,6 @@ public interface ParameterMapping {
      * @return 具体类型
      */
     String getJdbcTypeName();
+
+    String getResultMapId();
 }
