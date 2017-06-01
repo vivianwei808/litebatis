@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by wing4j on 2017/5/16.
+ * 用于对实体类进行包装，提供字段、方法的元信息
  */
 public abstract class MetaObject {
     public abstract boolean hasGetter(String name);

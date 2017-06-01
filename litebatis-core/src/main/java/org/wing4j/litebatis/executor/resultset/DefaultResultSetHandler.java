@@ -262,7 +262,9 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private void handleRowValuesForSimpleResultMap(ResultSetWrapper rsw, ResultMap resultMap, ResultHandler<?> resultHandler, RowBounds rowBounds, ResultMapping parentMapping)
       throws SQLException {
     DefaultResultContext<Object> resultContext = new DefaultResultContext<Object>();
+    //逻辑上跳过指定的记录
     skipRows(rsw.getResultSet(), rowBounds);
+    //如果没有超过逻辑行数
     while (shouldProcessMoreRows(resultContext, rowBounds) && rsw.getResultSet().next()) {
       ResultMap discriminatedResultMap = resolveDiscriminatedResultMap(rsw.getResultSet(), resultMap, null);
       Object rowValue = getRowValue(rsw, discriminatedResultMap);
@@ -310,9 +312,11 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
       final MetaObject metaObject = configuration.newMetaObject(resultObject);
       boolean foundValues = !resultMap.getConstructorResultMappings().isEmpty();
+      //如果可以进行自动映射
       if (shouldApplyAutomaticMappings(resultMap, false)) {
         foundValues = applyAutomaticMappings(rsw, resultMap, metaObject, null) || foundValues;
       }
+      //进行映射
       foundValues = applyPropertyMappings(rsw, resultMap, metaObject, lazyLoader, null) || foundValues;
       foundValues = lazyLoader.size() > 0 || foundValues;
       resultObject = foundValues ? resultObject : null;
@@ -383,6 +387,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   }
 
   private boolean applyAutomaticMappings(ResultSetWrapper rsw, ResultMap resultMap, MetaObject metaObject, String columnPrefix) throws SQLException {
+    //获取未映射的字段
     final List<String> unmappedColumnNames = rsw.getUnmappedColumnNames(resultMap, columnPrefix);
     boolean foundValues = false;
     for (String columnName : unmappedColumnNames) {
@@ -396,6 +401,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
           continue;
         }
       }
+      //从数据库字段提取Java领域的字段名，从Java类元信息中提取
       final String property = metaObject.findProperty(propertyName, configuration.isMapUnderscoreToCamelCase());
       if (property != null && metaObject.hasSetter(property)) {
         final Class<?> propertyType = metaObject.getSetterType(property);
