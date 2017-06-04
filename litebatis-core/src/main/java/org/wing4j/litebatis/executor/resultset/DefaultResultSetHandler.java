@@ -5,6 +5,8 @@ import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.exception.ResultMapException;
 import org.wing4j.litebatis.executor.ErrorContext;
 import org.wing4j.litebatis.executor.Executor;
+import org.wing4j.litebatis.executor.loader.ResultLoader;
+import org.wing4j.litebatis.executor.loader.ResultLoaderMap;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.result.DefaultResultContext;
 import org.wing4j.litebatis.executor.result.DefaultResultHandler;
@@ -119,23 +121,29 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 
     final List<Object> multipleResults = new ArrayList<Object>();
 
-    int resultSetCount = 0;
     ResultSetWrapper rsw = getFirstResultSet(stmt);
-
+    //一个映射的语句对象可能对应多个结果映射
     List<ResultMap> resultMaps = mappedStatement.getResultMaps();
     int resultMapCount = resultMaps.size();
+    //校验结果映射至少要存在一个
     validateResultMapsCount(rsw, resultMapCount);
+    //尝试的结果集计数
+    int resultSetCount = 0;
     while (rsw != null && resultMapCount > resultSetCount) {
       ResultMap resultMap = resultMaps.get(resultSetCount);
+      //根据映射进行结果集处理，将结果放入multipleResults
       handleResultSet(rsw, resultMap, multipleResults, null);
+      //获取下一个结果集进行包装
       rsw = getNextResultSet(stmt);
+      //清理处理的数据
       cleanUpAfterHandlingResultSet();
       resultSetCount++;
     }
-
+    //获取映射的多个结果集名称
     String[] resultSets = mappedStatement.getResulSets();
     if (resultSets != null) {
       while (rsw != null && resultSetCount < resultSets.length) {
+        //获得映射信息
         ResultMapping parentMapping = nextResultMaps.get(resultSets[resultSetCount]);
         if (parentMapping != null) {
           String nestedResultMapId = parentMapping.getNestedResultMapId();
@@ -151,6 +159,12 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     return collapseSingleResultList(multipleResults);
   }
 
+  /**
+   * 从JDBC语句对象获取第一个结果集
+   * @param stmt
+   * @return
+   * @throws SQLException
+   */
   private ResultSetWrapper getFirstResultSet(Statement stmt) throws SQLException {
     ResultSet rs = stmt.getResultSet();
     while (rs == null) {

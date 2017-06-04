@@ -21,6 +21,8 @@ public abstract class MetaObject {
     public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         return null;
     }
+    public abstract String findProperty(String propName, boolean useCamelCaseMapping);
     public abstract Object getOriginalObject();
     public abstract <E> void addAll(List<E> list);
+    public abstract void add(Object element);
 }

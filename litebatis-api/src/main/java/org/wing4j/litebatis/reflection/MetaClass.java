@@ -9,5 +9,7 @@ public abstract class MetaClass {
         return null;
     }
     public abstract boolean hasGetter(String name);
+    public abstract String findProperty(String name, boolean useCamelCaseMapping);
     public abstract Class<?> getGetterType(String name);
+    public abstract boolean hasDefaultConstructor();
 }

@@ -16,7 +16,7 @@ public interface ResultMap {
      * @return 编号
      */
     String getId();
-
+    Class<?> getType();
     /**
      *
      * @return
@@ -31,5 +31,8 @@ public interface ResultMap {
 
     Boolean getAutoMapping();
     List<ResultMapping> getPropertyResultMappings();
+    List<ResultMapping> getIdResultMappings();
     boolean hasNestedResultMaps();
+    List<ResultMapping> getConstructorResultMappings();
+    Discriminator getDiscriminator();
 }

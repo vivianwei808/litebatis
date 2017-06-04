@@ -2,6 +2,7 @@ package org.wing4j.litebatis;
 
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
+import org.wing4j.litebatis.executor.loader.ProxyFactory;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
@@ -79,4 +80,10 @@ public interface Configuration {
     boolean isSafeRowBoundsEnabled();
 
     boolean isSafeResultHandlerEnabled();
+
+    Class<?> getConfigurationFactory();
+    boolean isCallSettersOnNulls();
+    boolean isMapUnderscoreToCamelCase();
+    ProxyFactory getProxyFactory();
+    boolean hasResultMap(String id);
 }
