@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
-            <artifactId>litebatis-base</artifactId>
+            <artifactId>litebatis-api</artifactId>
             <version>1.0.2</version>
         </dependency>
         <dependency>

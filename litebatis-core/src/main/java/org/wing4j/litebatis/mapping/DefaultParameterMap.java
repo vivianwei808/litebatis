@@ -13,11 +13,10 @@ import java.util.List;
 public class DefaultParameterMap implements ParameterMap {
     String id;
     Class<?> type;
+    Configuration configuration;
     final List<ParameterMapping> parameterMappings = new ArrayList<>();
-
     public static class Builder {
-        private ParameterMap parameterMap = new DefaultParameterMap();
-
+        ParameterMap parameterMap = new DefaultParameterMap();
         public Builder(Configuration configuration, String id, Class<?> type, List<ParameterMapping> parameterMappings) {
             parameterMap.setId(id);
             parameterMap.setType(type);

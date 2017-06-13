@@ -2,12 +2,10 @@ package org.wing4j.litebatis;
 
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
-import org.wing4j.litebatis.executor.loader.ProxyFactory;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.session.*;
@@ -30,7 +28,7 @@ public interface Configuration {
 
     void addMappedStatement(MappedStatement ms);
 
-    public Collection<MappedStatement> getMappedStatements();
+    Collection<MappedStatement> getMappedStatements();
 
     MappedStatement getMappedStatement(String id);
 
@@ -38,13 +36,7 @@ public interface Configuration {
 
     <T> T getMapper(Class<T> type, SqlSession sqlSession);
 
-    MetaObject newMetaObject(Object object);
-
-    String getDatabaseId();
-
     Properties getVariables();
-
-    JdbcType getJdbcTypeForNull();
 
     Cache getCache(String id);
 
@@ -84,6 +76,5 @@ public interface Configuration {
     Class<?> getConfigurationFactory();
     boolean isCallSettersOnNulls();
     boolean isMapUnderscoreToCamelCase();
-    ProxyFactory getProxyFactory();
     boolean hasResultMap(String id);
 }

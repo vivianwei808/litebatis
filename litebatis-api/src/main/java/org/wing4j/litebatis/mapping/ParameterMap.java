@@ -9,6 +9,10 @@ import java.util.List;
  * 参数映射对象
  */
 public interface ParameterMap {
+    /**
+     * 设置绑定的配置对象
+     * @param configuration
+     */
     void setConfiguration(Configuration configuration);
     /**
      * 设置编号

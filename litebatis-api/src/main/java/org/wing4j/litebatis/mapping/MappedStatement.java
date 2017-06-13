@@ -68,9 +68,12 @@ public interface MappedStatement {
      * @return 资源路径
      */
     String getResource();
+
     boolean isFlushCacheRequired();
 
     List<ResultMap> getResultMaps();
+
     String[] getResulSets();
+
     boolean isResultOrdered();
 }

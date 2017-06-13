@@ -5,13 +5,11 @@ import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.mapping.*;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
 import org.wing4j.litebatis.type.JdbcType;
-import org.wing4j.litebatis.type.TypeAliasRegistry;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
@@ -59,11 +57,6 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
-        return null;
-    }
-
-    @Override
-    public MetaObject newMetaObject(Object object) {
         return null;
     }
 
