@@ -1,52 +1,47 @@
 package org.wing4j.litebatis.mapping;
 
-import org.wing4j.litebatis.Configuration;
-import org.wing4j.litebatis.reflection.MetaObject;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by wing4j on 2017/5/15.
+ * Created by wing4j on 2017/6/14.
  */
-public class BoundSql {
+public interface BoundSql {
+    /**
+     * 获取处理好的SQL语句
+     * @return SQL语句
+     */
+    String getSql();
 
-    private String sql;
-    private List<ParameterMapping> parameterMappings;
-    private Object parameterObject;
-    private Map<String, Object> additionalParameters;
-    private MetaObject metaParameters;
+    /**
+     * 获取参数映射信息列表
+     * @return 参数映射信息列表
+     */
+    List<ParameterMapping> getParameterMappings();
 
-    public BoundSql(Configuration configuration, String sql, List<ParameterMapping> parameterMappings, Object parameterObject) {
-        this.sql = sql;
-        this.parameterMappings = parameterMappings;
-        this.parameterObject = parameterObject;
-        this.additionalParameters = new HashMap<String, Object>();
-        this.metaParameters = configuration.newMetaObject(additionalParameters);
-    }
+    /**
+     * 获取参数对象
+     * @return 参数对象
+     */
+    Object getParameterObject();
 
-    public String getSql() {
-        return sql;
-    }
+    /**
+     * 是否存在附加参数
+     * @param name 参数名
+     * @return 存在返回真
+     */
+    boolean hasAdditionalParameter(String name);
 
-    public List<ParameterMapping> getParameterMappings() {
-        return parameterMappings;
-    }
+    /**
+     * 设置附加参数值
+     * @param name 参数名
+     * @param value 参数值
+     */
+    void setAdditionalParameter(String name, Object value);
 
-    public Object getParameterObject() {
-        return parameterObject;
-    }
-
-    public boolean hasAdditionalParameter(String name) {
-        return metaParameters.hasGetter(name);
-    }
-
-    public void setAdditionalParameter(String name, Object value) {
-        metaParameters.setValue(name, value);
-    }
-
-    public Object getAdditionalParameter(String name) {
-        return metaParameters.getValue(name);
-    }
+    /**
+     * 获取附加参数值
+     * @param name 参数名
+     * @return 参数值
+     */
+    Object getAdditionalParameter(String name);
 }

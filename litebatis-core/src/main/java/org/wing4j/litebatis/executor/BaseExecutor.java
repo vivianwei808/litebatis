@@ -5,7 +5,6 @@ import org.wing4j.litebatis.cache.CacheKey;
 import org.wing4j.litebatis.cache.impl.PerpetualCache;
 import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.mapping.*;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.LocalCacheScope;
@@ -31,7 +30,7 @@ public abstract class BaseExecutor implements Executor {
      */
     protected Executor wrapper;
 
-    protected ConcurrentLinkedQueue<DeferredLoad> deferredLoads;
+//    protected ConcurrentLinkedQueue<DeferredLoad> deferredLoads;
     /**
      * 本地缓存（一级缓存）
      */
@@ -52,7 +51,7 @@ public abstract class BaseExecutor implements Executor {
 
     protected BaseExecutor(Configuration configuration, Transaction transaction) {
         this.transaction = transaction;
-        this.deferredLoads = new ConcurrentLinkedQueue<DeferredLoad>();
+//        this.deferredLoads = new ConcurrentLinkedQueue<DeferredLoad>();
         this.localCache = new PerpetualCache("LocalCache");
         this.localOutputParameterCache = new PerpetualCache("LocalOutputParameterCache");
         this.closed = false;
@@ -83,7 +82,7 @@ public abstract class BaseExecutor implements Executor {
             log.warn("Unexpected exception on closing transaction.  Cause: " + e);
         } finally {
             transaction = null;
-            deferredLoads = null;
+//            deferredLoads = null;
             //如果SqlSession调用了close()方法，会释放掉一级缓存PerpetualCache对象，一级缓存将不可用；
             localCache = null;
             localOutputParameterCache = null;
@@ -169,30 +168,14 @@ public abstract class BaseExecutor implements Executor {
             queryStack--;
         }
         if (queryStack == 0) {
-            for (DeferredLoad deferredLoad : deferredLoads) {
-                deferredLoad.load();
-            }
             // issue #601
-            deferredLoads.clear();
+//            deferredLoads.clear();
             if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
                 // issue #482
                 clearLocalCache();
             }
         }
         return list;
-    }
-
-    @Override
-    public void deferLoad(MappedStatement ms, MetaObject resultObject, String property, CacheKey key, Class<?> targetType) {
-        if (closed) {
-            throw new ExecutorException("Executor was closed.");
-        }
-        DeferredLoad deferredLoad = new DeferredLoad(resultObject, property, key, localCache, configuration, targetType);
-        if (deferredLoad.canLoad()) {
-            deferredLoad.load();
-        } else {
-            deferredLoads.add(new DeferredLoad(resultObject, property, key, localCache, configuration, targetType));
-        }
     }
 
 
@@ -232,7 +215,7 @@ public abstract class BaseExecutor implements Executor {
         for (int i = 0; i < parameterMappings.size(); i++) {
             ParameterMapping parameterMapping = parameterMappings.get(i);
             if (parameterMapping.getMode() != ParameterMode.OUT) {
-                Object value;
+                Object value = null;
                 String propertyName = parameterMapping.getProperty();
                 if (boundSql.hasAdditionalParameter(propertyName)) {
                     value = boundSql.getAdditionalParameter(propertyName);
@@ -241,8 +224,8 @@ public abstract class BaseExecutor implements Executor {
                 } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
                     value = parameterObject;
                 } else {
-                    MetaObject metaObject = configuration.newMetaObject(parameterObject);
-                    value = metaObject.getValue(propertyName);
+//                    MetaObject metaObject = configuration.newMetaObject(parameterObject);
+//                    value = metaObject.getValue(propertyName);
                 }
                 //4. 传递给java.sql.Statement要设置的参数值
                 cacheKey.update(value);
@@ -325,15 +308,15 @@ public abstract class BaseExecutor implements Executor {
         if (ms.getStatementType() == StatementType.CALLABLE) {
             final Object cachedParameter = localOutputParameterCache.getObject(key);
             if (cachedParameter != null && parameter != null) {
-                final MetaObject metaCachedParameter = configuration.newMetaObject(cachedParameter);
-                final MetaObject metaParameter = configuration.newMetaObject(parameter);
-                for (ParameterMapping parameterMapping : boundSql.getParameterMappings()) {
-                    if (parameterMapping.getMode() != ParameterMode.IN) {
-                        final String parameterName = parameterMapping.getProperty();
-                        final Object cachedValue = metaCachedParameter.getValue(parameterName);
-                        metaParameter.setValue(parameterName, cachedValue);
-                    }
-                }
+//                final MetaObject metaCachedParameter = configuration.newMetaObject(cachedParameter);
+//                final MetaObject metaParameter = configuration.newMetaObject(parameter);
+//                for (ParameterMapping parameterMapping : boundSql.getParameterMappings()) {
+//                    if (parameterMapping.getMode() != ParameterMode.IN) {
+//                        final String parameterName = parameterMapping.getProperty();
+//                        final Object cachedValue = metaCachedParameter.getValue(parameterName);
+//                        metaParameter.setValue(parameterName, cachedValue);
+//                    }
+//                }
             }
         }
     }
@@ -361,46 +344,6 @@ public abstract class BaseExecutor implements Executor {
 
     public void setExecutorWrapper(Executor wrapper) {
         this.wrapper = wrapper;
-    }
-
-    private static class DeferredLoad {
-
-        private final MetaObject resultObject;
-        private final String property;
-        private final Class<?> targetType;
-        private final CacheKey key;
-        private final PerpetualCache localCache;
-        private final ObjectFactory objectFactory;
-        private final ResultExtractor resultExtractor;
-
-        // issue #781
-        public DeferredLoad(MetaObject resultObject,
-                            String property,
-                            CacheKey key,
-                            PerpetualCache localCache,
-                            Configuration configuration,
-                            Class<?> targetType) {
-            this.resultObject = resultObject;
-            this.property = property;
-            this.key = key;
-            this.localCache = localCache;
-            this.objectFactory = configuration.getObjectFactory();
-            this.resultExtractor = new ResultExtractor(configuration, objectFactory);
-            this.targetType = targetType;
-        }
-
-        public boolean canLoad() {
-            return localCache.getObject(key) != null && localCache.getObject(key) != ExecutionPlaceholder.EXECUTION_PLACEHOLDER;
-        }
-
-        public void load() {
-            @SuppressWarnings("unchecked")
-            // we suppose we get back a List
-                    List<Object> list = (List<Object>) localCache.getObject(key);
-            Object value = resultExtractor.extractObjectFromList(list, targetType);
-            resultObject.setValue(property, value);
-        }
-
     }
 
 }

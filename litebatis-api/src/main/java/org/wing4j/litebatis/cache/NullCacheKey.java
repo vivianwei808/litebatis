@@ -1,5 +1,7 @@
 package org.wing4j.litebatis.cache;
 
+import org.wing4j.litebatis.exception.CacheException;
+
 public final class NullCacheKey extends CacheKey {
 
   private static final long serialVersionUID = 3704229911977019465L;

@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.cache.impl;
 
 import org.wing4j.litebatis.cache.Cache;
-import org.wing4j.litebatis.cache.CacheException;
+import org.wing4j.litebatis.exception.CacheException;
 
 import java.util.HashMap;
 import java.util.Map;

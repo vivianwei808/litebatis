@@ -15,9 +15,8 @@
  */
 package org.wing4j.litebatis.cache.decorators;
 
-import lombok.extern.slf4j.Slf4j;
 import org.wing4j.litebatis.cache.Cache;
-import org.wing4j.litebatis.cache.CacheException;
+import org.wing4j.litebatis.exception.CacheException;
 import org.wing4j.litebatis.io.Resources;
 
 import java.io.*;

@@ -1,7 +1,5 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
-import org.wing4j.litebatis.reflection.MetaObject;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public interface ObjectWrapper {
 
   boolean hasGetter(String name);
 
-  MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory);
+//  MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory);
   
   boolean isCollection();
   

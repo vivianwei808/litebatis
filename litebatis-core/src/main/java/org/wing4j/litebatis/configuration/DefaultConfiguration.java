@@ -4,8 +4,10 @@ import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
+import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
@@ -60,20 +62,12 @@ public class DefaultConfiguration implements Configuration {
         return null;
     }
 
-    @Override
-    public String getDatabaseId() {
-        return null;
-    }
 
     @Override
     public Properties getVariables() {
         return null;
     }
 
-    @Override
-    public JdbcType getJdbcTypeForNull() {
-        return null;
-    }
 
     @Override
     public Cache getCache(String id) {
@@ -126,7 +120,17 @@ public class DefaultConfiguration implements Configuration {
     }
 
     @Override
+    public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
+        return null;
+    }
+
+    @Override
     public LocalCacheScope getLocalCacheScope() {
+        return null;
+    }
+
+    @Override
+    public ReflectorFactory getReflectorFactory() {
         return null;
     }
 
@@ -134,5 +138,40 @@ public class DefaultConfiguration implements Configuration {
     @Override
     public TypeHandlerRegistry getTypeHandlerRegistry() {
         return null;
+    }
+
+    @Override
+    public AutoMappingBehavior getAutoMappingBehavior() {
+        return null;
+    }
+
+    @Override
+    public boolean isSafeRowBoundsEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean isSafeResultHandlerEnabled() {
+        return false;
+    }
+
+    @Override
+    public Class<?> getConfigurationFactory() {
+        return null;
+    }
+
+    @Override
+    public boolean isCallSettersOnNulls() {
+        return false;
+    }
+
+    @Override
+    public boolean isMapUnderscoreToCamelCase() {
+        return false;
+    }
+
+    @Override
+    public boolean hasResultMap(String id) {
+        return false;
     }
 }

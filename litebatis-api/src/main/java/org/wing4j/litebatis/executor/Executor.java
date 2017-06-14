@@ -3,7 +3,6 @@ package org.wing4j.litebatis.executor;
 import org.wing4j.litebatis.cache.CacheKey;
 import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.session.ResultHandler;
 import org.wing4j.litebatis.session.RowBounds;
 import org.wing4j.litebatis.transaction.Transaction;
@@ -43,6 +42,17 @@ public interface Executor {
      * @throws SQLException 异常
      */
     <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey cacheKey, BoundSql boundSql) throws SQLException;
+
+    /**
+     *
+     * @param ms
+     * @param parameter
+     * @param rowBounds
+     * @param resultHandler
+     * @param <E>
+     * @return
+     * @throws SQLException
+     */
     <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException;
     /**
      * 批量执行时刷新语句
@@ -81,8 +91,6 @@ public interface Executor {
      * @return 事务对象
      */
     Transaction getTransaction();
-
-    void deferLoad(MappedStatement ms, MetaObject resultObject, String property, CacheKey key, Class<?> targetType);
 
     /**
      * 创建缓存主键

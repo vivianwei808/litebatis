@@ -10,6 +10,5 @@ public interface TypeHandlerRegistry {
     <T> TypeHandler<T> getTypeHandler(Class<T> type);
     TypeHandler<?> getTypeHandler(JdbcType jdbcType);
     <T> TypeHandler<T> getTypeHandler(Class<T> type, JdbcType jdbcType);
-
     TypeHandler<Object> getUnknownTypeHandler();
 }

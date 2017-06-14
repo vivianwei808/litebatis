@@ -1,6 +1,5 @@
 package org.wing4j.litebatis.executor.result;
 
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.reflection.wrapper.ObjectWrapperFactory;
@@ -29,10 +28,10 @@ public class DefaultMapResultHandler<K, V> implements ResultHandler<V> {
   @Override
   public void handleResult(ResultContext<? extends V> context) {
     final V value = context.getResultObject();
-    final MetaObject mo = MetaObject.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
-    // TODO is that assignment always true?
-    final K key = (K) mo.getValue(mapKey);
-    mappedResults.put(key, value);
+//    final MetaObject mo = MetaObject.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
+//    // TODO is that assignment always true?
+//    final K key = (K) mo.getValue(mapKey);
+//    mappedResults.put(key, value);
   }
 
   public Map<K, V> getMappedResults() {

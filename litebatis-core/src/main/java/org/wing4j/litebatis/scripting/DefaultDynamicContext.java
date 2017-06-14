@@ -21,19 +21,19 @@ public class DefaultDynamicContext implements DynamicContext {
         OgnlRuntime.setPropertyAccessor(ContextMap.class, new ContextAccessor());
     }
 
-    private final ContextMap bindings;
+    private ContextMap bindings = null;
     private final StringBuilder sqlBuilder = new StringBuilder();
     private int uniqueNumber = 0;
 
     public DefaultDynamicContext(Configuration configuration, Object parameterObject) {
         if (parameterObject != null && !(parameterObject instanceof Map)) {
-            MetaObject metaObject = configuration.newMetaObject(parameterObject);
-            bindings = new ContextMap(metaObject);
+//            MetaObject metaObject = configuration.newMetaObject(parameterObject);
+//            bindings = new ContextMap(metaObject);
         } else {
-            bindings = new ContextMap(null);
+//            bindings = new ContextMap(null);
         }
         bindings.put(PARAMETER_OBJECT_KEY, parameterObject);
-        bindings.put(DATABASE_ID_KEY, configuration.getDatabaseId());
+//        bindings.put(DATABASE_ID_KEY, configuration.getDatabaseId());
     }
 
     public Map<String, Object> getBindings() {
@@ -60,10 +60,10 @@ public class DefaultDynamicContext implements DynamicContext {
     static class ContextMap extends HashMap<String, Object> {
         private static final long serialVersionUID = 2977601501966151582L;
 
-        private MetaObject parameterMetaObject;
-        public ContextMap(MetaObject parameterMetaObject) {
-            this.parameterMetaObject = parameterMetaObject;
-        }
+//        private MetaObject parameterMetaObject;
+//        public ContextMap(MetaObject parameterMetaObject) {
+//            this.parameterMetaObject = parameterMetaObject;
+//        }
 
         @Override
         public Object get(Object key) {
@@ -72,10 +72,10 @@ public class DefaultDynamicContext implements DynamicContext {
                 return super.get(strKey);
             }
 
-            if (parameterMetaObject != null) {
-                // issue #61 do not modify the context when reading
-                return parameterMetaObject.getValue(strKey);
-            }
+//            if (parameterMetaObject != null) {
+//                // issue #61 do not modify the context when reading
+//                return parameterMetaObject.getValue(strKey);
+//            }
 
             return null;
         }
