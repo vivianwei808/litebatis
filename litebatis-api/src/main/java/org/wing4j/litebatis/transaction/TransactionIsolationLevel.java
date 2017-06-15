@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.session;
+package org.wing4j.litebatis.transaction;
 
 import java.sql.Connection;
 

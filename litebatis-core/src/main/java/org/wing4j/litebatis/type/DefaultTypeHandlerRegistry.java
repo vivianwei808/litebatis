@@ -1,7 +1,6 @@
 package org.wing4j.litebatis.type;
 
 
-import org.wing4j.litebatis.JdbcType;
 import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.io.ResolverUtil;
 
@@ -12,9 +11,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
-/**
- * @author Clinton Begin
- */
 public final class DefaultTypeHandlerRegistry implements TypeHandlerRegistry{
 
   private final Map<JdbcType, TypeHandler<?>> JDBC_TYPE_HANDLER_MAP = new EnumMap<JdbcType, TypeHandler<?>>(JdbcType.class);

@@ -1,7 +1,5 @@
 package org.wing4j.litebatis.transaction;
 
-import org.wing4j.litebatis.session.TransactionIsolationLevel;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.Properties;

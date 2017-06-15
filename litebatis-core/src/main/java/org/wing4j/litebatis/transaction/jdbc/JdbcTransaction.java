@@ -2,7 +2,7 @@ package org.wing4j.litebatis.transaction.jdbc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.wing4j.litebatis.exception.TransactionException;
-import org.wing4j.litebatis.session.TransactionIsolationLevel;
+import org.wing4j.litebatis.transaction.TransactionIsolationLevel;
 import org.wing4j.litebatis.transaction.Transaction;
 
 import javax.sql.DataSource;
