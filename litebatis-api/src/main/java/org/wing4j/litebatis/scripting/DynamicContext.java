@@ -9,12 +9,14 @@ import java.util.Map;
 public interface DynamicContext {
     /**
      * 绑定参数
+     *
      * @return
      */
     Map<String, Object> getBindings();
 
     /**
      * 绑定参数
+     *
      * @param name
      * @param value
      */
@@ -22,14 +24,17 @@ public interface DynamicContext {
 
     /**
      * 追加SQL
+     *
      * @param sql
      */
     void appendSql(String sql);
 
     /**
      * 输出SQL
+     *
      * @return
      */
     String getSql();
+
     int getUniqueNumber();
 }

@@ -8,8 +8,8 @@ import org.wing4j.litebatis.mapping.SqlSource;
 
 public interface LanguageDriver {
 
-  ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
+    ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
 
-  SqlSource createSqlSource(Configuration configuration, String script, Class<?> parameterType);
+    SqlSource createSqlSource(Configuration configuration, String script, Class<?> parameterType);
 
 }

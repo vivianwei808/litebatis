@@ -11,26 +11,39 @@ import java.util.List;
  */
 public interface SqlSession {
     Configuration getConfiguration();
+
     <E> List<E> selectList(String statement);
 
     /**
      * 查询数据库结果
+     *
      * @param statement 语句编号
      * @param parameter 参数
-     * @param <E> 返回结果类型
+     * @param <E>       返回结果类型
      * @return 结果列表
      */
     <E> List<E> selectList(String statement, Object parameter);
+
     <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds);
+
     int insert(String statement, Object parameter);
+
     int update(String statement);
+
     int update(String statement, Object parameter);
+
     int delete(String statement);
+
     int delete(String statement, Object parameter);
+
     void commit();
+
     void commit(boolean force);
+
     void rollback();
+
     void rollback(boolean force);
+
     List<BatchResult> flushStatements();
 
     /**
@@ -42,6 +55,8 @@ public interface SqlSession {
      * 清空PerpetualCache对象中的数据，但是该对象仍可使用；
      */
     void clearCache();
+
     <T> T getMapper(Class<T> type);
+
     Connection getConnection();
 }

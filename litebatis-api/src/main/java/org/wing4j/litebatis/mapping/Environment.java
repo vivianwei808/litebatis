@@ -9,6 +9,8 @@ import javax.sql.DataSource;
  */
 public interface Environment {
     String getId();
+
     TransactionFactory getTransactionFactory();
+
     DataSource getDataSource();
 }

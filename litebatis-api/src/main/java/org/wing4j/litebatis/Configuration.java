@@ -10,7 +10,6 @@ import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
-import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
@@ -74,7 +73,10 @@ public interface Configuration {
     boolean isSafeResultHandlerEnabled();
 
     Class<?> getConfigurationFactory();
+
     boolean isCallSettersOnNulls();
+
     boolean isMapUnderscoreToCamelCase();
+
     boolean hasResultMap(String id);
 }

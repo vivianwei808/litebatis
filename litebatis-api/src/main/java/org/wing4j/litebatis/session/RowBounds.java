@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RowBounds {
-  public static final int NO_ROW_OFFSET = 0;
-  public static final int NO_ROW_LIMIT = Integer.MAX_VALUE;
-  public static final RowBounds DEFAULT = new RowBounds();
-   int offset = NO_ROW_OFFSET;
-   int limit = NO_ROW_LIMIT;
+    public static final int NO_ROW_OFFSET = 0;
+    public static final int NO_ROW_LIMIT = Integer.MAX_VALUE;
+    public static final RowBounds DEFAULT = new RowBounds();
+    int offset = NO_ROW_OFFSET;
+    int limit = NO_ROW_LIMIT;
 }

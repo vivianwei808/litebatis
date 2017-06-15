@@ -29,8 +29,12 @@ public interface ResultMapping {
     String getNestedQueryId();
 
     boolean isCompositeResult();
+
     String getForeignColumn();
+
     String getColumnPrefix();
+
     Set<String> getNotNullColumns();
+
     List<ResultMapping> getComposites();
 }
