@@ -5,6 +5,7 @@ import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeHandler;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
+import org.wing4j.litebatis.type.UnknownTypeHandler;
 
 import java.sql.ResultSet;
 

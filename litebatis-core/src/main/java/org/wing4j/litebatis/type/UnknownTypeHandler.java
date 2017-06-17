@@ -15,7 +15,6 @@
  */
 package org.wing4j.litebatis.type;
 
-import org.apache.ibatis.io.Resources;
 import org.wing4j.litebatis.exception.TypeException;
 
 import java.sql.*;
@@ -126,10 +125,10 @@ public class UnknownTypeHandler extends BaseTypeHandler<Object> {
   }
 
   private Class<?> safeGetClassForColumn(ResultSetMetaData rsmd, Integer columnIndex) {
-    try {
-      return Resources.classForName(rsmd.getColumnClassName(columnIndex));
-    } catch (Exception e) {
+//    try {
+//      return Resources.classForName(rsmd.getColumnClassName(columnIndex));
+//    } catch (Exception e) {
       return null;
-    }
+//    }
   }
 }

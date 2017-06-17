@@ -84,7 +84,7 @@ public abstract class BaseStatementHandler implements StatementHandler {
 
     @Override
     public Statement prepare(Connection connection) throws SQLException {
-        ErrorContext.instance().sql(boundSql.getSql());
+//        ErrorContext.instance().sql(boundSql.getSql());
         Statement statement = null;
         try {
             statement = instantiateStatement(connection);

@@ -20,13 +20,6 @@ import org.wing4j.litebatis.exception.TypeException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-/**
- * References a generic type.
- *
- * @param <T> the referenced type
- * @author Simone Tripodi
- * @since 3.1.0
- */
 public abstract class TypeReference<T> {
 
   private final Type rawType;

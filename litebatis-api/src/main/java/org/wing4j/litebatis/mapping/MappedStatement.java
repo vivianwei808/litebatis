@@ -46,10 +46,10 @@ public interface MappedStatement {
      *
      * @return 超时时间
      */
-    Integer getTimeout();
+    int getTimeout();
 
 
-    Integer getFetchSize();
+    int getFetchSize();
 
     /**
      * 获取该语句绑定的主键生成器

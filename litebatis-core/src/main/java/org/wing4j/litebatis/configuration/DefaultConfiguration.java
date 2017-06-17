@@ -3,25 +3,33 @@ package org.wing4j.litebatis.configuration;
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
+import org.wing4j.litebatis.executor.resultset.DefaultResultSetHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
+import org.wing4j.litebatis.executor.statement.RoutingStatementHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.plugin.InterceptorChain;
 import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.scripting.DefaultParameterHandler;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
+import org.wing4j.litebatis.type.DefaultTypeHandlerRegistry;
 import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Properties;
 
 /**
  * Created by wing4j on 2017/5/17.
  */
 public class DefaultConfiguration implements Configuration {
-
+    protected final InterceptorChain interceptorChain = new InterceptorChain();
+    protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection");
+    protected final TypeHandlerRegistry typeHandlerRegistry = new DefaultTypeHandlerRegistry();
     @Override
     public Environment getEnvironment() {
         return null;
@@ -39,7 +47,7 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public void addMappedStatement(MappedStatement ms) {
-
+        mappedStatements.put(ms.getId(), ms);
     }
 
     @Override
@@ -49,7 +57,15 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public MappedStatement getMappedStatement(String id) {
-        return null;
+        return getMappedStatement(id, true);
+    }
+
+    @Override
+    public MappedStatement getMappedStatement(String id, boolean validateIncompleteStatements) {
+        if (validateIncompleteStatements) {
+            //TODO 执行语句编译
+        }
+        return mappedStatements.get(id);
     }
 
     @Override
@@ -111,17 +127,24 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public ParameterHandler newParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
-        return null;
+        ParameterHandler parameterHandler = new DefaultParameterHandler(mappedStatement, parameterObject, boundSql);
+        parameterHandler = (ParameterHandler) interceptorChain.pluginAll(parameterHandler);
+        return parameterHandler;
     }
 
     @Override
     public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
-        return null;
+        ResultSetHandler resultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
+        resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
+        return resultSetHandler;
     }
 
     @Override
     public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
-        return null;
+        //构建一个语句处理器的代理对象
+        StatementHandler statementHandler = new RoutingStatementHandler(executor, mappedStatement, parameterObject, rowBounds, resultHandler, boundSql);
+        statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);
+        return statementHandler;
     }
 
     @Override
@@ -137,7 +160,7 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public TypeHandlerRegistry getTypeHandlerRegistry() {
-        return null;
+        return typeHandlerRegistry;
     }
 
     @Override

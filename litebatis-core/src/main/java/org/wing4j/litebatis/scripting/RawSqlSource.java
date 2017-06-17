@@ -7,9 +7,10 @@ import org.wing4j.litebatis.mapping.SqlSource;
 
 import java.util.HashMap;
 
+
 public class RawSqlSource implements SqlSource {
 
-  private final SqlSource sqlSource;
+  private SqlSource sqlSource;
 
   public RawSqlSource(Configuration configuration, SqlNode rootSqlNode, Class<?> parameterType) {
     this(configuration, getSql(configuration, rootSqlNode), parameterType);

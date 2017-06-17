@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by wing4j on 2017/6/14.
+ * 受限制的SQL对象
  */
 public interface BoundSql {
     /**

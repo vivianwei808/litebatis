@@ -57,7 +57,7 @@ public class SimpleExecutor extends BaseExecutor {
         return Collections.emptyList();
     }
 
-    private Statement prepareStatement(StatementHandler handler) throws SQLException {
+    Statement prepareStatement(StatementHandler handler) throws SQLException {
         Statement stmt;
         Connection connection = getConnection();
         stmt = handler.prepare(connection);

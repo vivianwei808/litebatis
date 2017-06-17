@@ -2,6 +2,7 @@ package org.wing4j.litebatis.scripting;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.mapping.BoundSql;
+import org.wing4j.litebatis.mapping.DefaultBoundSql;
 import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.SqlSource;
 
@@ -25,7 +26,7 @@ public class StaticSqlSource implements SqlSource {
 
   @Override
   public BoundSql getBoundSql(Object parameterObject) {
-    return new BoundSql(configuration, sql, parameterMappings, parameterObject);
+    return new DefaultBoundSql(configuration, sql, parameterMappings, parameterObject);
   }
 
 }

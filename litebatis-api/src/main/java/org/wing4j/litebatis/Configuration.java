@@ -28,8 +28,14 @@ public interface Configuration {
     void addMappedStatement(MappedStatement ms);
 
     Collection<MappedStatement> getMappedStatements();
-
+    /**
+     * 根据语句ID获取已映射的语句对象
+     * @param id 语句ID，格式为id或者namespace.id
+     * @return 已映射的语句对象
+     */
     MappedStatement getMappedStatement(String id);
+    MappedStatement getMappedStatement(String id, boolean validateIncompleteStatements);
+
 
     <T> void addMapper(Class<T> type);
 
@@ -53,10 +59,37 @@ public interface Configuration {
 
     ObjectFactory getObjectFactory();
 
+    /**
+     * 构建一个参数处理器
+     * @param mappedStatement 已映射的语句对象
+     * @param parameterObject 参数对象
+     * @param boundSql 受限制的SQL对象
+     * @return 参数处理器
+     */
     ParameterHandler newParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
 
+    /**
+     * 构建一个结果集处理器
+     * @param executor 执行器
+     * @param mappedStatement 已映射的语句对象
+     * @param rowBounds 逻辑行限制对象
+     * @param parameterHandler 参数处理器
+     * @param resultHandler 结果处理器
+     * @param boundSql 受限制的SQL对象
+     * @return 结果集处理器
+     */
     ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql);
 
+    /**
+     * 构建一个语句处理器
+     * @param executor 执行器
+     * @param mappedStatement 已映射的语句对象
+     * @param parameterObject 参数对象
+     * @param rowBounds 逻辑行限制对象
+     * @param resultHandler 结果处理器
+     * @param boundSql 受限制的SQL对象
+     * @return
+     */
     StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql);
 
     LocalCacheScope getLocalCacheScope();

@@ -7,7 +7,6 @@ import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.ParameterMode;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.type.TypeHandler;
@@ -50,7 +49,7 @@ public class DefaultParameterHandler implements ParameterHandler {
       for (int i = 0; i < parameterMappings.size(); i++) {
         ParameterMapping parameterMapping = parameterMappings.get(i);
         if (parameterMapping.getMode() != ParameterMode.OUT) {
-          Object value;
+          Object value = null;
           String propertyName = parameterMapping.getProperty();
           if (boundSql.hasAdditionalParameter(propertyName)) { // issue #448 ask first for additional params
             value = boundSql.getAdditionalParameter(propertyName);
@@ -59,14 +58,14 @@ public class DefaultParameterHandler implements ParameterHandler {
           } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
             value = parameterObject;
           } else {
-            MetaObject metaObject = configuration.newMetaObject(parameterObject);
-            value = metaObject.getValue(propertyName);
+//            MetaObject metaObject = configuration.newMetaObject(parameterObject);
+//            value = metaObject.getValue(propertyName);
           }
           //每一个Mapping都有一个TypeHandler，根据TypeHandler来对preparedStatement进行设置参数
           TypeHandler typeHandler = parameterMapping.getTypeHandler();
           JdbcType jdbcType = parameterMapping.getJdbcType();
           if (value == null && jdbcType == null) {
-            jdbcType = configuration.getJdbcTypeForNull();
+//            jdbcType = configuration.getJdbcTypeForNull();
           }
           try {
             //设置参数

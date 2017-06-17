@@ -2,7 +2,6 @@ package org.wing4j.litebatis.executor;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.exception.ExecutorException;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 
 import java.lang.reflect.Array;
@@ -23,8 +22,8 @@ public class ResultExtractor {
       value = list;
     } else if (targetType != null && objectFactory.isCollection(targetType)) {
       value = objectFactory.create(targetType);
-      MetaObject metaObject = configuration.newMetaObject(value);
-      metaObject.addAll(list);
+//      MetaObject metaObject = configuration.newMetaObject(value);
+//      metaObject.addAll(list);
     } else if (targetType != null && targetType.isArray()) {
       Class<?> arrayComponentType = targetType.getComponentType();
       Object array = Array.newInstance(arrayComponentType, list.size());

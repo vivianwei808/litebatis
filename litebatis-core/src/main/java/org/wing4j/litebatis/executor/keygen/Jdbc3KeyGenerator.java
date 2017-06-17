@@ -3,7 +3,6 @@ package org.wing4j.litebatis.executor.keygen;
 import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.mapping.MappedStatement;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.type.TypeHandler;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
@@ -30,60 +29,59 @@ public class Jdbc3KeyGenerator implements KeyGenerator {
   }
 
   public void processBatch(MappedStatement ms, Statement stmt, List<Object> parameters) {
-    ResultSet rs = null;
-    try {
-      rs = stmt.getGeneratedKeys();
-      final Configuration configuration = ms.getConfiguration();
-      final TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
-      final String[] keyProperties = ms.getKeyProperties();
-      final ResultSetMetaData rsmd = rs.getMetaData();
-      TypeHandler<?>[] typeHandlers = null;
-      if (keyProperties != null && rsmd.getColumnCount() >= keyProperties.length) {
-        for (Object parameter : parameters) {
-          // there should be one row for each statement (also one for each parameter)
-          if (!rs.next()) {
-            break;
-          }
-          final MetaObject metaParam = configuration.newMetaObject(parameter);
-          if (typeHandlers == null) {
-            typeHandlers = getTypeHandlers(typeHandlerRegistry, metaParam, keyProperties);
-          }
-          populateKeys(rs, metaParam, keyProperties, typeHandlers);
-        }
-      }
-    } catch (Exception e) {
-      throw new ExecutorException("Error getting generated key or setting result to parameter object. Cause: " + e, e);
-    } finally {
-      if (rs != null) {
-        try {
-          rs.close();
-        } catch (Exception e) {
-          // ignore
-        }
-      }
-    }
+//    ResultSet rs = null;
+//    try {
+//      rs = stmt.getGeneratedKeys();
+//      final Configuration configuration = ms.getConfiguration();
+//      final TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+//      final String[] keyProperties = ms.getKeyProperties();
+//      final ResultSetMetaData rsmd = rs.getMetaData();
+//      TypeHandler<?>[] typeHandlers = null;
+//      if (keyProperties != null && rsmd.getColumnCount() >= keyProperties.length) {
+//        for (Object parameter : parameters) {
+//          // there should be one row for each statement (also one for each parameter)
+//          if (!rs.next()) {
+//            break;
+//          }
+//          if (typeHandlers == null) {
+//            typeHandlers = getTypeHandlers(typeHandlerRegistry, metaParam, keyProperties);
+//          }
+//          populateKeys(rs, metaParam, keyProperties, typeHandlers);
+//        }
+//      }
+//    } catch (Exception e) {
+//      throw new ExecutorException("Error getting generated key or setting result to parameter object. Cause: " + e, e);
+//    } finally {
+//      if (rs != null) {
+//        try {
+//          rs.close();
+//        } catch (Exception e) {
+//          // ignore
+//        }
+//      }
+//    }
   }
 
-  private TypeHandler<?>[] getTypeHandlers(TypeHandlerRegistry typeHandlerRegistry, MetaObject metaParam, String[] keyProperties) {
-    TypeHandler<?>[] typeHandlers = new TypeHandler<?>[keyProperties.length];
-    for (int i = 0; i < keyProperties.length; i++) {
-      if (metaParam.hasSetter(keyProperties[i])) {
-        Class<?> keyPropertyType = metaParam.getSetterType(keyProperties[i]);
-        TypeHandler<?> th = typeHandlerRegistry.getTypeHandler(keyPropertyType);
-        typeHandlers[i] = th;
-      }
-    }
-    return typeHandlers;
-  }
+//  private TypeHandler<?>[] getTypeHandlers(TypeHandlerRegistry typeHandlerRegistry, MetaObject metaParam, String[] keyProperties) {
+//    TypeHandler<?>[] typeHandlers = new TypeHandler<?>[keyProperties.length];
+//    for (int i = 0; i < keyProperties.length; i++) {
+//      if (metaParam.hasSetter(keyProperties[i])) {
+//        Class<?> keyPropertyType = metaParam.getSetterType(keyProperties[i]);
+//        TypeHandler<?> th = typeHandlerRegistry.getTypeHandler(keyPropertyType);
+//        typeHandlers[i] = th;
+//      }
+//    }
+//    return typeHandlers;
+//  }
 
-  private void populateKeys(ResultSet rs, MetaObject metaParam, String[] keyProperties, TypeHandler<?>[] typeHandlers) throws SQLException {
-    for (int i = 0; i < keyProperties.length; i++) {
-      TypeHandler<?> th = typeHandlers[i];
-      if (th != null) {
-        Object value = th.getResult(rs, i + 1);
-        metaParam.setValue(keyProperties[i], value);
-      }
-    }
-  }
+//  private void populateKeys(ResultSet rs, MetaObject metaParam, String[] keyProperties, TypeHandler<?>[] typeHandlers) throws SQLException {
+//    for (int i = 0; i < keyProperties.length; i++) {
+//      TypeHandler<?> th = typeHandlers[i];
+//      if (th != null) {
+//        Object value = th.getResult(rs, i + 1);
+//        metaParam.setValue(keyProperties[i], value);
+//      }
+//    }
+//  }
 
 }
