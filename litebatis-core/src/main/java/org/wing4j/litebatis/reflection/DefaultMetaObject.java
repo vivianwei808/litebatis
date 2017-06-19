@@ -1,5 +1,6 @@
 package org.wing4j.litebatis.reflection;
 
+import lombok.Getter;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 import org.wing4j.litebatis.reflection.wrapper.BeanWrapper;
 import org.wing4j.litebatis.reflection.wrapper.CollectionWrapper;
@@ -13,11 +14,16 @@ import java.util.Map;
  * Created by wing4j on 2017/6/19.
  */
 public class DefaultMetaObject implements MetaObject {
-     Object originalObject;
-     ObjectWrapper objectWrapper;
-     ObjectFactory objectFactory;
-     ObjectWrapperFactory objectWrapperFactory;
-     ReflectorFactory reflectorFactory;
+    @Getter
+    Object originalObject;
+    @Getter
+    ObjectWrapper objectWrapper;
+    @Getter
+    ObjectFactory objectFactory;
+    @Getter
+    ObjectWrapperFactory objectWrapperFactory;
+    @Getter
+    ReflectorFactory reflectorFactory;
 
     public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         if (object == null) {
@@ -45,14 +51,15 @@ public class DefaultMetaObject implements MetaObject {
             this.objectWrapper = new BeanWrapper(this, object);
         }
     }
+
     @Override
     public boolean hasGetter(String fieldName) {
-        return false;
+        return objectWrapper.hasGetter(fieldName);
     }
 
     @Override
     public boolean hasSetter(String fieldName) {
-        return false;
+        return objectWrapper.hasSetter(fieldName);
     }
 
     @Override
@@ -71,7 +78,7 @@ public class DefaultMetaObject implements MetaObject {
                 return metaValue.getValue(prop.getChildren());
             }
         } else {
-            return (T)objectWrapper.get(prop);
+            return (T) objectWrapper.get(prop);
         }
     }
 
@@ -89,10 +96,12 @@ public class DefaultMetaObject implements MetaObject {
     public String findProperty(String propName, boolean useCamelCaseMapping) {
         return null;
     }
+
     public MetaObject metaObjectForProperty(String name) {
         Object value = getValue(name);
         return DefaultMetaObject.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
     }
+
     @Override
     public Object getOriginalObject() {
         return null;

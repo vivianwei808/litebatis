@@ -62,4 +62,5 @@ public interface MetaObject {
     <E> void addAll(List<E> list);
 
     void add(Object element);
+    ReflectorFactory getReflectorFactory();
 }

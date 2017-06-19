@@ -1,5 +1,8 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
+import org.wing4j.litebatis.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.DefaultMetaClass;
+import org.wing4j.litebatis.reflection.Invoker;
 import org.wing4j.litebatis.reflection.MetaClass;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
@@ -14,7 +17,7 @@ public class BeanWrapper extends BaseWrapper {
     public BeanWrapper(MetaObject metaObject, Object object) {
         super(metaObject);
         this.object = object;
-//    this.metaClass = MetaClass.forClass(object.getClass(), metaObject.getReflectorFactory());
+        this.metaClass = DefaultMetaClass.forClass(object.getClass(), metaObject.getReflectorFactory());
     }
 
     @Override
@@ -23,8 +26,22 @@ public class BeanWrapper extends BaseWrapper {
             Object collection = resolveCollection(prop, object);
             return getCollectionValue(prop, collection);
         } else {
-//      return getBeanProperty(prop, object);
-            return null;
+            return getBeanProperty(prop, object);
+        }
+    }
+
+    private Object getBeanProperty(PropertyTokenizer prop, Object object) {
+        try {
+            Invoker method = metaClass.getGetInvoker(prop.getName());
+            try {
+                return method.invoke(object, NO_ARGUMENTS);
+            } catch (Throwable t) {
+                throw t;
+            }
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Throwable t) {
+            throw new ReflectionException("Could not get property '" + prop.getName() + "' from " + object.getClass() + ".  Cause: " + t.toString(), t);
         }
     }
 
