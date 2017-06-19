@@ -5,7 +5,6 @@ import org.wing4j.litebatis.cache.CacheKey;
 import org.wing4j.litebatis.cache.impl.PerpetualCache;
 import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.mapping.*;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.session.LocalCacheScope;
 import org.wing4j.litebatis.session.ResultHandler;
@@ -17,7 +16,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Slf4j
 public abstract class BaseExecutor implements Executor {

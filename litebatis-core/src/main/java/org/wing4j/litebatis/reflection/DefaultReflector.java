@@ -2,7 +2,6 @@ package org.wing4j.litebatis.reflection;
 
 import org.wing4j.litebatis.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
-import org.wing4j.litebatis.reflection.invoker.Invoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.invoker.SetFieldInvoker;
 import org.wing4j.litebatis.reflection.property.PropertyNamer;
@@ -10,7 +9,7 @@ import org.wing4j.litebatis.reflection.property.PropertyNamer;
 import java.lang.reflect.*;
 import java.util.*;
 
-public class DefaultReflector extends Reflector{
+public class DefaultReflector implements Reflector{
 
   private static final String[] EMPTY_STRING_ARRAY = new String[0];
 

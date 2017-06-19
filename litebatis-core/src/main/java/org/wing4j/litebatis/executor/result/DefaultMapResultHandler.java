@@ -1,8 +1,8 @@
 package org.wing4j.litebatis.executor.result;
 
 import org.wing4j.litebatis.reflection.ReflectorFactory;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
-import org.wing4j.litebatis.reflection.wrapper.ObjectWrapperFactory;
+import org.wing4j.litebatis.reflection.ObjectFactory;
+import org.wing4j.litebatis.reflection.ObjectWrapperFactory;
 import org.wing4j.litebatis.session.ResultContext;
 import org.wing4j.litebatis.session.ResultHandler;
 

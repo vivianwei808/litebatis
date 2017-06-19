@@ -7,6 +7,7 @@ import org.wing4j.litebatis.mapping.BoundSql;
 import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.mapping.ParameterMode;
+import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.type.TypeHandler;
@@ -58,8 +59,8 @@ public class DefaultParameterHandler implements ParameterHandler {
           } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
             value = parameterObject;
           } else {
-//            MetaObject metaObject = configuration.newMetaObject(parameterObject);
-//            value = metaObject.getValue(propertyName);
+            MetaObject metaObject = configuration.newMetaObject(parameterObject);
+            value = metaObject.getValue(propertyName);
           }
           //每一个Mapping都有一个TypeHandler，根据TypeHandler来对preparedStatement进行设置参数
           TypeHandler typeHandler = parameterMapping.getTypeHandler();

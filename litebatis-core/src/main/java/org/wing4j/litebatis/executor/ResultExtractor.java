@@ -2,7 +2,7 @@ package org.wing4j.litebatis.executor;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.exception.ExecutorException;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.reflection.ObjectFactory;
 
 import java.lang.reflect.Array;
 import java.util.List;

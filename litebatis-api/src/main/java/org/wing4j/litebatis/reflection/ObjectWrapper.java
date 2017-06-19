@@ -1,4 +1,5 @@
-package org.wing4j.litebatis.reflection.wrapper;
+package org.wing4j.litebatis.reflection;
+
 
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
@@ -24,12 +25,10 @@ public interface ObjectWrapper {
 
     boolean hasGetter(String name);
 
-//  MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory);
-
     boolean isCollection();
 
-    public void add(Object element);
+    void add(Object element);
 
-    public <E> void addAll(List<E> element);
+    <E> void addAll(List<E> element);
 
 }

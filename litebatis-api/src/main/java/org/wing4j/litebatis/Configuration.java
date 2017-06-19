@@ -6,8 +6,9 @@ import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
+import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.ReflectorFactory;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.reflection.ObjectFactory;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
@@ -92,9 +93,11 @@ public interface Configuration {
      */
     StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql);
 
+    MetaObject newMetaObject(Object object);
+
     LocalCacheScope getLocalCacheScope();
 
-    //    TypeAliasRegistry getTypeAliasRegistry();
+//        TypeAliasRegistry getTypeAliasRegistry();
     ReflectorFactory getReflectorFactory();
 
     TypeHandlerRegistry getTypeHandlerRegistry();

@@ -10,13 +10,11 @@ import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.plugin.InterceptorChain;
-import org.wing4j.litebatis.reflection.ReflectorFactory;
-import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+import org.wing4j.litebatis.reflection.*;
 import org.wing4j.litebatis.scripting.DefaultParameterHandler;
 import org.wing4j.litebatis.session.*;
 import org.wing4j.litebatis.transaction.Transaction;
 import org.wing4j.litebatis.type.DefaultTypeHandlerRegistry;
-import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
@@ -30,6 +28,9 @@ public class DefaultConfiguration implements Configuration {
     protected final InterceptorChain interceptorChain = new InterceptorChain();
     protected final Map<String, MappedStatement> mappedStatements = new StrictMap<MappedStatement>("Mapped Statements collection");
     protected final TypeHandlerRegistry typeHandlerRegistry = new DefaultTypeHandlerRegistry();
+    protected ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
+    protected ObjectFactory objectFactory = new DefaultObjectFactory();
+    protected ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
     @Override
     public Environment getEnvironment() {
         return null;
@@ -145,6 +146,11 @@ public class DefaultConfiguration implements Configuration {
         StatementHandler statementHandler = new RoutingStatementHandler(executor, mappedStatement, parameterObject, rowBounds, resultHandler, boundSql);
         statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);
         return statementHandler;
+    }
+
+    @Override
+    public MetaObject newMetaObject(Object object) {
+        return DefaultMetaObject.forObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
     }
 
     @Override

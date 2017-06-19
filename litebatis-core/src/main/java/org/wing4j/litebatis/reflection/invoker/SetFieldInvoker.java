@@ -15,6 +15,8 @@
  */
 package org.wing4j.litebatis.reflection.invoker;
 
+import org.wing4j.litebatis.reflection.Invoker;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 

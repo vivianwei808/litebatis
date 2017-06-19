@@ -10,7 +10,7 @@
 //import org.wing4j.litebatis.executor.result.DefaultResultHandler;
 //import org.wing4j.litebatis.mapping.*;
 //import org.wing4j.litebatis.reflection.ReflectorFactory;
-//import org.wing4j.litebatis.reflection.factory.ObjectFactory;
+//import org.wing4j.litebatis.reflection.ObjectFactory;
 //import org.wing4j.litebatis.Configuration;
 //import org.wing4j.litebatis.session.AutoMappingBehavior;
 //import org.wing4j.litebatis.session.ResultContext;
