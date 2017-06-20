@@ -45,7 +45,7 @@ public class PreparedStatementHandler extends BaseStatementHandler {
         PreparedStatement ps = (PreparedStatement) statement;
         ps.execute();
         //2. 使用ResultHandler来处理ResultSet
-        return resultSetHandler.<E>handleResultSets(ps);
+        return resultSetHandler.handleResultSets(ps);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class SimpleExecutor extends BaseExecutor {
             //创建java.Sql.Statement对象，传递给StatementHandler对象
             stmt = prepareStatement(handler);
             //调用StatementHandler.query()方法，返回List结果集
-            return handler.<E>query(stmt, resultHandler);
+            return handler.query(stmt, resultHandler);
         } finally {
             closeStatement(stmt);
         }
