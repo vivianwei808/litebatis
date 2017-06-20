@@ -5,6 +5,7 @@ import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.executor.keygen.KeyGenerator;
 import org.wing4j.litebatis.executor.keygen.NoKeyGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ public class DefaultMappedStatement implements MappedStatement{
     KeyGenerator keyGenerator = new NoKeyGenerator();
     Configuration configuration;
     final ParameterMap parameterMap = new DefaultParameterMap();
+    final List<ResultMap> resultMaps = new ArrayList<>();
+    ResultSetType resultSetType = ResultSetType.FORWARD_ONLY;
     SqlSource sqlSource;
     boolean hasNestedResultMaps;
     int fetchSize;
@@ -57,7 +60,7 @@ public class DefaultMappedStatement implements MappedStatement{
 
     @Override
     public ResultSetType getResultSetType() {
-        return null;
+        return resultSetType;
     }
 
     @Override
@@ -67,7 +70,7 @@ public class DefaultMappedStatement implements MappedStatement{
 
     @Override
     public List<ResultMap> getResultMaps() {
-        return null;
+        return resultMaps;
     }
 
     @Override
