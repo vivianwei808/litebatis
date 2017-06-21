@@ -6,6 +6,7 @@ import org.wing4j.litebatis.cache.impl.PerpetualCache;
 import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.session.LocalCacheScope;
 import org.wing4j.litebatis.session.ResultHandler;
 import org.wing4j.litebatis.session.RowBounds;
@@ -148,7 +149,7 @@ public abstract class BaseExecutor implements Executor {
             throw new ExecutorException("Executor was closed.");
         }
         if (queryStack == 0 && ms.isFlushCacheRequired()) {
-            //清除本地缓存数据，回话缓存还可用
+            //清除本地缓存数据，会话缓存还可用
             clearLocalCache();
         }
         List<E> list;
@@ -222,8 +223,8 @@ public abstract class BaseExecutor implements Executor {
                 } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
                     value = parameterObject;
                 } else {
-//                    MetaObject metaObject = configuration.newMetaObject(parameterObject);
-//                    value = metaObject.getValue(propertyName);
+                    MetaObject metaObject = configuration.newMetaObject(parameterObject);
+                    value = metaObject.getValue(propertyName);
                 }
                 //4. 传递给java.sql.Statement要设置的参数值
                 cacheKey.update(value);
@@ -306,15 +307,15 @@ public abstract class BaseExecutor implements Executor {
         if (ms.getStatementType() == StatementType.CALLABLE) {
             final Object cachedParameter = localOutputParameterCache.getObject(key);
             if (cachedParameter != null && parameter != null) {
-//                final MetaObject metaCachedParameter = configuration.newMetaObject(cachedParameter);
-//                final MetaObject metaParameter = configuration.newMetaObject(parameter);
-//                for (ParameterMapping parameterMapping : boundSql.getParameterMappings()) {
-//                    if (parameterMapping.getMode() != ParameterMode.IN) {
-//                        final String parameterName = parameterMapping.getProperty();
-//                        final Object cachedValue = metaCachedParameter.getValue(parameterName);
-//                        metaParameter.setValue(parameterName, cachedValue);
-//                    }
-//                }
+                final MetaObject metaCachedParameter = configuration.newMetaObject(cachedParameter);
+                final MetaObject metaParameter = configuration.newMetaObject(parameter);
+                for (ParameterMapping parameterMapping : boundSql.getParameterMappings()) {
+                    if (parameterMapping.getMode() != ParameterMode.IN) {
+                        final String parameterName = parameterMapping.getProperty();
+                        final Object cachedValue = metaCachedParameter.getValue(parameterName);
+                        metaParameter.setValue(parameterName, cachedValue);
+                    }
+                }
             }
         }
     }
