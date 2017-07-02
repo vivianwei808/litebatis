@@ -189,7 +189,7 @@ public class SimpleResultSetHandler implements ResultSetHandler {
             resultObject = foundValues ? resultObject : null;
             return resultObject;
         }
-        return null;
+        return resultObject;
     }
 
     private boolean applyPropertyMappings(ResultSetWrapper rsw, ResultMap resultMap, MetaObject metaObject, String columnPrefix)

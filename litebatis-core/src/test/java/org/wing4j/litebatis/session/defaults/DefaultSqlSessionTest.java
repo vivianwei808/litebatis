@@ -116,7 +116,10 @@ public class DefaultSqlSessionTest {
             ResultMap resultMap = new DefaultResultMap();
             resultMap.setType(String.class);
             resultMap.getMappedColumns().add("serial_no");
-            ResultMapping resultMapping = new DefaultResultMapping();
+            DefaultResultMapping resultMapping = new DefaultResultMapping();
+            resultMapping.setColumn("serial_no");
+            resultMapping.setJavaType(String.class);
+            resultMapping.setJdbcType(JdbcType.VARCHAR);
             resultMap.getResultMappings().add(resultMapping);
             ms.getResultMaps().add(resultMap);
             configuration.addMappedStatement(ms);
