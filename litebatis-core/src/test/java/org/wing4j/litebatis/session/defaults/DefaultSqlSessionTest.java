@@ -6,10 +6,7 @@ import org.junit.Test;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.configuration.DefaultConfiguration;
 import org.wing4j.litebatis.executor.SimpleExecutor;
-import org.wing4j.litebatis.mapping.DefaultMappedStatement;
-import org.wing4j.litebatis.mapping.DefaultParameterMapping;
-import org.wing4j.litebatis.mapping.ParameterMapping;
-import org.wing4j.litebatis.mapping.StatementType;
+import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.scripting.RawSqlSource;
 import org.wing4j.litebatis.session.SqlSession;
 import org.wing4j.litebatis.transaction.TransactionIsolationLevel;
@@ -116,6 +113,12 @@ public class DefaultSqlSessionTest {
             parameterMapping.setProperty("serialNo");
             parameterMapping.setTypeHandler(new StringTypeHandler());
             ms.getParameterMap().getParameterMappings().add(parameterMapping);
+            ResultMap resultMap = new DefaultResultMap();
+            resultMap.setType(String.class);
+            resultMap.getMappedColumns().add("serial_no");
+            ResultMapping resultMapping = new DefaultResultMapping();
+            resultMap.getResultMappings().add(resultMapping);
+            ms.getResultMaps().add(resultMap);
             configuration.addMappedStatement(ms);
         }
         SqlSession session = new DefaultSqlSession(configuration, new SimpleExecutor(configuration, new JdbcTransaction(dataSource, TransactionIsolationLevel.READ_COMMITTED, true )));

@@ -6,7 +6,7 @@
     <parent>
         <artifactId>litebatis</artifactId>
         <groupId>org.wing4j.litebatis</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>litebatis-annotation</artifactId>

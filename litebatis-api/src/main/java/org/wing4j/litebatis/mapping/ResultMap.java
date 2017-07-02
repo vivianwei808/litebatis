@@ -19,7 +19,8 @@ public interface ResultMap {
      */
     String getId();
 
-    Class<?> getType();
+    void setType(Class type);
+    Class getType();
 
     /**
      * @return
@@ -42,6 +43,4 @@ public interface ResultMap {
     boolean hasNestedResultMaps();
 
     List<ResultMapping> getConstructorResultMappings();
-
-    Discriminator getDiscriminator();
 }

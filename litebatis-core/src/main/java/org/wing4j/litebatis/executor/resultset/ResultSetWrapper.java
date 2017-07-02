@@ -38,6 +38,10 @@ class ResultSetWrapper {
     return resultSet;
   }
 
+  public boolean next() throws SQLException {
+    return this.resultSet.next();
+  }
+
   public List<String> getColumnNames() {
     return this.columnNames;
   }

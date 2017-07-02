@@ -8,6 +8,7 @@
     </parent>
     <groupId>org.wing4j.litebatis</groupId>
     <artifactId>litebatis</artifactId>
+    <version>1.0.3</version>
     <name>litebatis</name>
     <packaging>pom</packaging>
     <description>This is the wing4j-family member wing4j-litebatis</description>

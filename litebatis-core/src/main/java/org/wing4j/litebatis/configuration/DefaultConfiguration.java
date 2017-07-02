@@ -3,7 +3,7 @@ package org.wing4j.litebatis.configuration;
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
-import org.wing4j.litebatis.executor.resultset.DefaultResultSetHandler;
+import org.wing4j.litebatis.executor.resultset.SimpleResultSetHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.executor.statement.RoutingStatementHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
@@ -123,7 +123,8 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public ObjectFactory getObjectFactory() {
-        return null;
+        ObjectFactory objectFactory = new DefaultObjectFactory();
+        return objectFactory;
     }
 
     @Override
@@ -135,7 +136,7 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler, ResultHandler resultHandler, BoundSql boundSql) {
-        ResultSetHandler resultSetHandler = new DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
+        ResultSetHandler resultSetHandler = new SimpleResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);
         resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);
         return resultSetHandler;
     }
@@ -160,7 +161,8 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public ReflectorFactory getReflectorFactory() {
-        return null;
+        ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
+        return reflectorFactory;
     }
 
 
