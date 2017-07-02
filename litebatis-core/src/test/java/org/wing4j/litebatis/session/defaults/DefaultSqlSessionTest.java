@@ -114,11 +114,12 @@ public class DefaultSqlSessionTest {
             parameterMapping.setTypeHandler(new StringTypeHandler());
             ms.getParameterMap().getParameterMappings().add(parameterMapping);
             ResultMap resultMap = new DefaultResultMap();
-            resultMap.setType(String.class);
+            resultMap.setType(TestEntity.class);
             resultMap.getMappedColumns().add("serial_no");
             DefaultResultMapping resultMapping = new DefaultResultMapping();
             resultMapping.setColumn("serial_no");
             resultMapping.setJavaType(String.class);
+            resultMapping.setProperty("serialNo");
             resultMapping.setJdbcType(JdbcType.VARCHAR);
             resultMap.getResultMappings().add(resultMapping);
             ms.getResultMaps().add(resultMap);
