@@ -104,7 +104,7 @@ public class DefaultSqlSessionTest {
             ms.setId("select");
             ms.setConfiguration(configuration);
             ms.setStatementType(StatementType.PREPARED);
-            RawSqlSource sqlSource = new RawSqlSource(configuration, "select * from a where serial_no = ?", String.class);
+            RawSqlSource sqlSource = new RawSqlSource(configuration, "select * from a where serial_no like ?", String.class);
             ms.setSqlSource(sqlSource);
             DefaultParameterMapping parameterMapping = new DefaultParameterMapping();
             parameterMapping.setConfiguration(configuration);
@@ -128,7 +128,8 @@ public class DefaultSqlSessionTest {
         SqlSession session = new DefaultSqlSession(configuration, new SimpleExecutor(configuration, new JdbcTransaction(dataSource, TransactionIsolationLevel.READ_COMMITTED, true )));
         session.update("createTable");
         session.update("insert", new TestEntity("1111"));
-        List list = session.selectList("select", new TestEntity("1111"));
+        session.update("insert", new TestEntity("1112"));
+        List list = session.selectList("select", new TestEntity("111%"));
         System.out.println(list);
     }
 }

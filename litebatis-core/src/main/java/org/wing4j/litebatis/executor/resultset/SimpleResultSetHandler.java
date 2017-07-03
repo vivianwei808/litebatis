@@ -177,18 +177,18 @@ public class SimpleResultSetHandler implements ResultSetHandler {
 
     Object getRowValue(ResultSetWrapper rsw, ResultMap resultMap) throws SQLException {
         Object resultObject = createResultObject(rsw, resultMap, null);
-        if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
-            final MetaObject metaObject = configuration.newMetaObject(resultObject);
-            boolean foundValues = !resultMap.getConstructorResultMappings().isEmpty();
+//        if (resultObject != null && !typeHandlerRegistry.hasTypeHandler(resultMap.getType())) {
+//            final MetaObject metaObject = configuration.newMetaObject(resultObject);
+//            boolean foundValues = !resultMap.getConstructorResultMappings().isEmpty();
             //如果可以进行自动映射
-            if (shouldApplyAutomaticMappings(resultMap, false)) {
+//            if (shouldApplyAutomaticMappings(resultMap, false)) {
 //                foundValues = applyAutomaticMappings(rsw, resultMap, metaObject, null) || foundValues;
-            }
+//            }
             //进行映射
-            foundValues = applyPropertyMappings(rsw, resultMap, metaObject, null) || foundValues;
-            resultObject = foundValues ? resultObject : null;
-            return resultObject;
-        }
+//            foundValues = applyPropertyMappings(rsw, resultMap, metaObject, null) || foundValues;
+//            resultObject = foundValues ? resultObject : null;
+//            return resultObject;
+//        }
         return resultObject;
     }
 
