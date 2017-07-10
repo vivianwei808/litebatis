@@ -2,6 +2,8 @@ package org.wing4j.litebatis.configuration;
 
 import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
+import org.wing4j.litebatis.executor.ResultExtractor;
+import org.wing4j.litebatis.executor.SimpleExecutor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.SimpleResultSetHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
@@ -31,19 +33,26 @@ public class DefaultConfiguration implements Configuration {
     protected ReflectorFactory reflectorFactory = new DefaultReflectorFactory();
     protected ObjectFactory objectFactory = new DefaultObjectFactory();
     protected ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
-    @Override
-    public Environment getEnvironment() {
-        return null;
-    }
+    int statementTimeout = DEFAULT_STATEMENT_TIMEOUT;
+//    @Override
+//    public Environment getEnvironment() {
+//        return null;
+//    }
 
     @Override
     public Executor newExecutor(Transaction transaction, ExecutorType executorType) {
-        return null;
+        if(executorType == ExecutorType.SIMPLE){
+            return new SimpleExecutor(this, transaction);
+        }else if(executorType == ExecutorType.REUSE){
+            return null;
+        }else{
+            return null;
+        }
     }
 
     @Override
     public Executor newExecutor(Transaction transaction) {
-        return null;
+        return newExecutor(transaction, ExecutorType.SIMPLE);
     }
 
     @Override
@@ -53,7 +62,7 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public Collection<MappedStatement> getMappedStatements() {
-        return null;
+        return mappedStatements.values();
     }
 
     @Override
@@ -80,27 +89,30 @@ public class DefaultConfiguration implements Configuration {
     }
 
 
-    @Override
-    public Properties getVariables() {
-        return null;
-    }
+//    @Override
+//    public Properties getVariables() {
+//        return null;
+//    }
 
 
-    @Override
-    public Cache getCache(String id) {
-        return null;
-    }
-
-    @Override
-    public void addCache(Cache cache) {
-
-    }
+//    @Override
+//    public Cache getCache(String id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public void addCache(Cache cache) {
+//
+//    }
 
     @Override
     public void addParameterMap(ParameterMap pm) {
 
     }
-
+//    @Override
+//    public ResultMap getResultMap(String id) {
+//        return null;
+//    }
     @Override
     public boolean isUseColumnLabel() {
         return false;
@@ -108,7 +120,7 @@ public class DefaultConfiguration implements Configuration {
 
     @Override
     public Integer getDefaultStatementTimeout() {
-        return null;
+        return statementTimeout;
     }
 
     @Override
@@ -116,10 +128,7 @@ public class DefaultConfiguration implements Configuration {
         return null;
     }
 
-    @Override
-    public ResultMap getResultMap(String id) {
-        return null;
-    }
+
 
     @Override
     public ObjectFactory getObjectFactory() {

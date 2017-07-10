@@ -3,22 +3,22 @@ package org.wing4j.litebatis.reflection;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Ö´ĞĞÆ÷
+ * æ‰§è¡Œå™¨
  */
 public interface Invoker {
     /**
-     * Ö´ĞĞ°ü×°µÄ·½·¨
-     * @param target Ä¿±ê¶ÔÏó
-     * @param args ²ÎÊıÊı×é
-     * @return Ö´ĞĞ½á¹û
+     * æ‰§è¡ŒåŒ…è£…çš„æ–¹æ³•
+     * @param target ç›®æ ‡å¯¹è±¡
+     * @param args å‚æ•°æ•°ç»„
+     * @return æ‰§è¡Œç»“æœ
      * @throws IllegalAccessException
      * @throws InvocationTargetException
      */
     Object invoke(Object target, Object[] args) throws IllegalAccessException, InvocationTargetException;
 
     /**
-     * ·½·¨·µ»ØÀàĞÍ
-     * @return ÀàĞÍ
+     * æ–¹æ³•è¿”å›ç±»å‹
+     * @return ç±»å‹
      */
     Class<?> getType();
 }

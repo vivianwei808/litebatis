@@ -3,7 +3,7 @@ package org.wing4j.litebatis.reflection.property;
 import java.lang.reflect.Field;
 
 /**
- * @author Clinton Begin
+ * 属性拷贝
  */
 public final class PropertyCopier {
 

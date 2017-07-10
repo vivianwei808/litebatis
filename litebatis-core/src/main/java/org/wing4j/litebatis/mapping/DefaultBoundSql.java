@@ -2,6 +2,7 @@ package org.wing4j.litebatis.mapping;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.mapping.ParameterMapping;
+import org.wing4j.litebatis.reflection.MetaObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,15 +16,15 @@ public class DefaultBoundSql implements BoundSql{
     private String sql;
     private List<ParameterMapping> parameterMappings;
     private Object parameterObject;
-    private Map<String, Object> additionalParameters;
-//    private MetaObject metaParameters;
+//    private Map<String, Object> additionalParameters;
+    private MetaObject metaParameters;
 
     public DefaultBoundSql(Configuration configuration, String sql, List<ParameterMapping> parameterMappings, Object parameterObject) {
         this.sql = sql;
         this.parameterMappings = parameterMappings;
         this.parameterObject = parameterObject;
-        this.additionalParameters = new HashMap<String, Object>();
-//        this.metaParameters = configuration.newMetaObject(additionalParameters);
+//        this.additionalParameters = new HashMap<String, Object>();
+        this.metaParameters = configuration.newMetaObject(this.parameterObject);
     }
 
     public String getSql() {
@@ -39,16 +40,14 @@ public class DefaultBoundSql implements BoundSql{
     }
 
     public boolean hasAdditionalParameter(String name) {
-//        return metaParameters.hasGetter(name);
-        return false;
+        return metaParameters.hasGetter(name);
     }
 
     public void setAdditionalParameter(String name, Object value) {
-//        metaParameters.setValue(name, value);
+        metaParameters.setValue(name, value);
     }
 
-    public Object getAdditionalParameter(String name) {
-//        return metaParameters.getValue(name);
-        return null;
+    public <T> T getAdditionalParameter(String name) {
+        return metaParameters.getValue(name);
     }
 }

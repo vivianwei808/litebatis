@@ -15,7 +15,9 @@ public class RawSqlSource implements SqlSource {
   public RawSqlSource(Configuration configuration, SqlNode rootSqlNode, Class<?> parameterType) {
     this(configuration, getSql(configuration, rootSqlNode), parameterType);
   }
-
+  public RawSqlSource(Configuration configuration, String sql) {
+    this(configuration, sql, null);
+  }
   public RawSqlSource(Configuration configuration, String sql, Class<?> parameterType) {
     SqlSourceBuilder sqlSourceParser = new SqlSourceBuilder(configuration);
     Class<?> clazz = parameterType == null ? Object.class : parameterType;

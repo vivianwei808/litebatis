@@ -61,5 +61,5 @@ public interface ParameterMapping {
      */
     String getJdbcTypeName();
 
-    String getResultMapId();
+//    String getResultMapId();
 }

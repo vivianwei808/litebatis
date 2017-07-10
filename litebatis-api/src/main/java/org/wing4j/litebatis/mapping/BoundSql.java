@@ -50,5 +50,5 @@ public interface BoundSql {
      * @param name 参数名
      * @return 参数值
      */
-    Object getAdditionalParameter(String name);
+    <T> T getAdditionalParameter(String name);
 }

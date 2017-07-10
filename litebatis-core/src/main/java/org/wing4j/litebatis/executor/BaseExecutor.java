@@ -229,11 +229,11 @@ public abstract class BaseExecutor implements Executor {
                 cacheKey.update(value);
             }
         }
-        if (configuration.getEnvironment() != null) {
-            // issue #176
-            //5.传递数据源ID
-            cacheKey.update(configuration.getEnvironment().getId());
-        }
+//        if (configuration.getEnvironment() != null) {
+//            // issue #176
+//            //5.传递数据源ID
+//            cacheKey.update(configuration.getEnvironment().getId());
+//        }
         return cacheKey;
     }
 

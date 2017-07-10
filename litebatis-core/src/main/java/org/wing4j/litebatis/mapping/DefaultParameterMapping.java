@@ -21,10 +21,12 @@ public class DefaultParameterMapping implements ParameterMapping {
     JdbcType jdbcType;
     Integer numericScale;
     TypeHandler<?> typeHandler;
-    String resultMapId;
+//    String resultMapId;
     String jdbcTypeName;
     String expression;
-
+    public static Builder builder(Configuration configuration, String property, Class<?> javaType){
+        return new Builder(configuration, property, javaType);
+    }
     public static class Builder {
         private DefaultParameterMapping parameterMapping = new DefaultParameterMapping();
 
@@ -62,10 +64,10 @@ public class DefaultParameterMapping implements ParameterMapping {
             return this;
         }
 
-        public Builder resultMapId(String resultMapId) {
-            parameterMapping.resultMapId = resultMapId;
-            return this;
-        }
+//        public Builder resultMapId(String resultMapId) {
+//            parameterMapping.resultMapId = resultMapId;
+//            return this;
+//        }
 
         public Builder typeHandler(TypeHandler<?> typeHandler) {
             parameterMapping.typeHandler = typeHandler;
@@ -90,11 +92,11 @@ public class DefaultParameterMapping implements ParameterMapping {
 
         private void validate() {
             if (ResultSet.class.equals(parameterMapping.javaType)) {
-                if (parameterMapping.resultMapId == null) {
-                    throw new IllegalStateException("Missing resultmap in property '"
-                            + parameterMapping.property + "'.  "
-                            + "Parameters of type java.sql.ResultSet require a resultmap.");
-                }
+//                if (parameterMapping.resultMapId == null) {
+//                    throw new IllegalStateException("Missing resultmap in property '"
+//                            + parameterMapping.property + "'.  "
+//                            + "Parameters of type java.sql.ResultSet require a resultmap.");
+//                }
             } else {
                 if (parameterMapping.typeHandler == null) {
                     throw new IllegalStateException("Type handler was null on parameter mapping for property '"

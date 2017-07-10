@@ -20,7 +20,8 @@ import java.util.Properties;
  * Created by wing4j on 2017/5/16.
  */
 public interface Configuration {
-    Environment getEnvironment();
+    int DEFAULT_STATEMENT_TIMEOUT = 60 * 1000;
+//    Environment getEnvironment();
 
     Executor newExecutor(Transaction transaction, ExecutorType executorType);
 
@@ -42,11 +43,11 @@ public interface Configuration {
 
     <T> T getMapper(Class<T> type, SqlSession sqlSession);
 
-    Properties getVariables();
+//    Properties getVariables();
 
-    Cache getCache(String id);
+//    Cache getCache(String id);
 
-    void addCache(Cache cache);
+//    void addCache(Cache cache);
 
     void addParameterMap(ParameterMap pm);
 
@@ -56,7 +57,7 @@ public interface Configuration {
 
     Integer getDefaultFetchSize();
 
-    ResultMap getResultMap(String id);
+//    ResultMap getResultMap(String id);
 
     ObjectFactory getObjectFactory();
 

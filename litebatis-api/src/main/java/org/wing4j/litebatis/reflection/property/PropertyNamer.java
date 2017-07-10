@@ -4,9 +4,8 @@ import org.wing4j.litebatis.exception.ReflectionException;
 
 import java.util.Locale;
 
-
 /**
- * @author Clinton Begin
+ *
  */
 public final class PropertyNamer {
 

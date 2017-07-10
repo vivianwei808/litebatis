@@ -132,4 +132,71 @@ public class DefaultSqlSessionTest {
         List list = session.selectList("select", new TestEntity("111%"));
         System.out.println(list);
     }
+
+    @Test
+    public void testSelect2(){
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+        dataSource.setUrl("jdbc:log4jdbc:h2:mem:;DB_CLOSE_DELAY=-1");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        Configuration configuration = new DefaultConfiguration();
+        {
+            DefaultMappedStatement ms = new DefaultMappedStatement();
+            ms.setId("createTable");
+            ms.setConfiguration(configuration);
+            ms.setStatementType(StatementType.PREPARED);
+            RawSqlSource sqlSource = new RawSqlSource(configuration, "create table a(serial_no varchar(10), PRIMARY KEY (serial_no))");
+            ms.setSqlSource(sqlSource);
+            configuration.addMappedStatement(ms);
+        }
+        {
+            DefaultMappedStatement ms = new DefaultMappedStatement();
+            ms.setId("insert");
+            ms.setConfiguration(configuration);
+            ms.setStatementType(StatementType.PREPARED);
+            RawSqlSource sqlSource = new RawSqlSource(configuration, "insert into a(serial_no) values(?)", TestEntity.class);
+            ms.setSqlSource(sqlSource);
+            DefaultParameterMapping parameterMapping = new DefaultParameterMapping();
+            parameterMapping.setConfiguration(configuration);
+            parameterMapping.setJavaType(String.class);
+            parameterMapping.setJdbcType(JdbcType.VARCHAR);
+            parameterMapping.setProperty("serialNo");
+            parameterMapping.setTypeHandler(new StringTypeHandler());
+            ms.getParameterMap().getParameterMappings().add(parameterMapping);
+            configuration.addMappedStatement(ms);
+        }
+        {
+            DefaultMappedStatement ms = new DefaultMappedStatement();
+            ms.setId("select");
+            ms.setConfiguration(configuration);
+            ms.setStatementType(StatementType.PREPARED);
+            RawSqlSource sqlSource = new RawSqlSource(configuration, "select * from a where serial_no like ?", String.class);
+            ms.setSqlSource(sqlSource);
+            DefaultParameterMapping parameterMapping = new DefaultParameterMapping();
+            parameterMapping.setConfiguration(configuration);
+            parameterMapping.setJavaType(String.class);
+            parameterMapping.setJdbcType(JdbcType.VARCHAR);
+            parameterMapping.setProperty("serialNo");
+            parameterMapping.setTypeHandler(new StringTypeHandler());
+            ms.getParameterMap().getParameterMappings().add(parameterMapping);
+            ResultMap resultMap = new DefaultResultMap();
+            resultMap.setType(TestEntity.class);
+            resultMap.getMappedColumns().add("serial_no");
+            DefaultResultMapping resultMapping = new DefaultResultMapping();
+            resultMapping.setColumn("serial_no");
+            resultMapping.setJavaType(String.class);
+            resultMapping.setProperty("serialNo");
+            resultMapping.setJdbcType(JdbcType.VARCHAR);
+            resultMap.getResultMappings().add(resultMapping);
+            ms.getResultMaps().add(resultMap);
+            configuration.addMappedStatement(ms);
+        }
+        SqlSession session = new DefaultSqlSession(configuration, new SimpleExecutor(configuration, new JdbcTransaction(dataSource, TransactionIsolationLevel.READ_COMMITTED, true )));
+        session.update("createTable");
+        session.update("insert", new TestEntity("1111"));
+        session.update("insert", new TestEntity("1112"));
+        List list = session.selectList("select", new TestEntity("111%"));
+        System.out.println(list);
+    }
 }
