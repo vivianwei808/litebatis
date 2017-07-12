@@ -3,6 +3,7 @@ package org.wing4j.litebatis.mapping;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.MetaObjectFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,15 +17,13 @@ public class DefaultBoundSql implements BoundSql{
     private String sql;
     private List<ParameterMapping> parameterMappings;
     private Object parameterObject;
-//    private Map<String, Object> additionalParameters;
     private MetaObject metaParameters;
 
     public DefaultBoundSql(Configuration configuration, String sql, List<ParameterMapping> parameterMappings, Object parameterObject) {
         this.sql = sql;
         this.parameterMappings = parameterMappings;
         this.parameterObject = parameterObject;
-//        this.additionalParameters = new HashMap<String, Object>();
-        this.metaParameters = configuration.newMetaObject(this.parameterObject);
+        this.metaParameters = MetaObjectFactory.forObject(this.parameterObject);
     }
 
     public String getSql() {

@@ -94,7 +94,7 @@ public interface Configuration {
      */
     StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql);
 
-    MetaObject newMetaObject(Object object);
+//    MetaObject newMetaObject(Object object);
 
     LocalCacheScope getLocalCacheScope();
 

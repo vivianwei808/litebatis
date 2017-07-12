@@ -1,9 +1,9 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
 import org.wing4j.litebatis.exception.ReflectionException;
-import org.wing4j.litebatis.reflection.DefaultMetaClass;
 import org.wing4j.litebatis.reflection.Invoker;
 import org.wing4j.litebatis.reflection.MetaClass;
+import org.wing4j.litebatis.reflection.MetaClassFactory;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
@@ -17,7 +17,7 @@ public class BeanWrapper extends BaseWrapper {
     public BeanWrapper(MetaObject metaObject, Object object) {
         super(metaObject);
         this.object = object;
-        this.metaClass = DefaultMetaClass.forClass(object.getClass(), metaObject.getReflectorFactory());
+        this.metaClass = MetaClassFactory.forClass(object.getClass());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class BeanWrapper extends BaseWrapper {
             Object collection = resolveCollection(prop, object);
             setCollectionValue(prop, collection, value);
         } else {
-//      setBeanProperty(prop, object, value);
+//            setBeanProperty(prop, object, value);
         }
     }
 
@@ -72,17 +72,17 @@ public class BeanWrapper extends BaseWrapper {
 
     @Override
     public Class<?> getSetterType(String name) {
-//    PropertyTokenizer prop = new PropertyTokenizer(name);
-//    if (prop.hasNext()) {
-//      MetaObject metaValue = metaObject.metaObjectForProperty(prop.getIndexedName());
-//      if (metaValue == SystemMetaObject.NULL_META_OBJECT) {
-//        return metaClass.getSetterType(name);
-//      } else {
-//        return metaValue.getSetterType(prop.getChildren());
-//      }
-//    } else {
-//      return metaClass.getSetterType(name);
-//    }
+//        PropertyTokenizer prop = new PropertyTokenizer(name);
+//        if (prop.hasNext()) {
+//            MetaObject metaValue = metaObject.metaObjectForProperty(prop.getIndexedName());
+//            if (metaValue == SystemMetaObject.NULL_META_OBJECT) {
+//                return metaClass.getSetterType(name);
+//            } else {
+//                return metaValue.getSetterType(prop.getChildren());
+//            }
+//        } else {
+//            return metaClass.getSetterType(name);
+//        }
         return null;
     }
 

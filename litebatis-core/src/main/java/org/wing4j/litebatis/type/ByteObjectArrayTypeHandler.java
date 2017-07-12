@@ -15,6 +15,8 @@
  */
 package org.wing4j.litebatis.type;
 
+import org.wing4j.litebatis.type.utils.ByteArrayUtils;
+
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

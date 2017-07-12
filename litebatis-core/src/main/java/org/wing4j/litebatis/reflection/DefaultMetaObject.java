@@ -25,15 +25,15 @@ public class DefaultMetaObject implements MetaObject {
     @Getter
     ReflectorFactory reflectorFactory;
 
-    public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
-        if (object == null) {
-            return null;
-        } else {
-            return new DefaultMetaObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
-        }
-    }
+//    public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
+//        if (object == null) {
+//            return null;
+//        } else {
+//            return new DefaultMetaObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
+//        }
+//    }
 
-    private DefaultMetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
+    DefaultMetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         this.originalObject = object;
         this.objectFactory = objectFactory;
         this.objectWrapperFactory = objectWrapperFactory;
@@ -99,7 +99,7 @@ public class DefaultMetaObject implements MetaObject {
 
     public MetaObject metaObjectForProperty(String name) {
         Object value = getValue(name);
-        return DefaultMetaObject.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
+        return MetaObjectFactory.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
     }
 
     @Override

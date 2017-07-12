@@ -1,37 +1,21 @@
-/**
- *    Copyright 2009-2015 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
 package org.wing4j.litebatis.type;
 
 import org.wing4j.litebatis.exception.TypeException;
 import org.wing4j.litebatis.io.ResolverUtil;
 import org.wing4j.litebatis.io.Resources;
+import org.wing4j.litebatis.reflection.TypeAliasRegistry;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * @author Clinton Begin
- */
-public class TypeAliasRegistry {
+public class DefaultTypeAliasRegistry implements TypeAliasRegistry{
 
-  private final Map<String, Class<?>> TYPE_ALIASES = new HashMap<String, Class<?>>();
+  private static final Map<String, Class<?>> TYPE_ALIASES = new ConcurrentHashMap();
 
-  public TypeAliasRegistry() {
+  DefaultTypeAliasRegistry() {
     registerAlias("string", String.class);
 
     registerAlias("byte", Byte.class);
@@ -92,8 +76,6 @@ public class TypeAliasRegistry {
     registerAlias("ResultSet", ResultSet.class);
   }
 
-  @SuppressWarnings("unchecked")
-  // throws class cast exception as well if types cannot be assigned
   public <T> Class<T> resolveAlias(String string) {
     try {
       if (string == null) {
@@ -158,10 +140,7 @@ public class TypeAliasRegistry {
       throw new TypeException("Error registering type alias "+alias+" for "+value+". Cause: " + e, e);
     }
   }
-  
-  /**
-   * @since 3.2.2
-   */
+
   public Map<String, Class<?>> getTypeAliases() {
     return Collections.unmodifiableMap(TYPE_ALIASES);
   }

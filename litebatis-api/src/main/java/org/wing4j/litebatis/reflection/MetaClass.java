@@ -28,8 +28,22 @@ public interface MetaClass {
      * @return Setter方法列表
      */
     String[] getSetterNames();
+    String findProperty(String name);
+    /**
+     * 查找属性名
+     * @param name 属性名
+     * @param useCamelCaseMapping 是否驼峰命名
+     * @return
+     */
     String findProperty(String name, boolean useCamelCaseMapping);
 
+    /**
+     *
+     * @param name
+     * @param builder
+     * @return
+     */
+    StringBuilder buildProperty(String name, StringBuilder builder);
     /**
      * 获取Getter执行器
      * @param fieldName 字段名

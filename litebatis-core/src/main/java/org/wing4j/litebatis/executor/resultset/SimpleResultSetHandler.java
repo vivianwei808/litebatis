@@ -240,7 +240,7 @@ public class SimpleResultSetHandler implements ResultSetHandler {
     private Object createResultObject(ResultSetWrapper rsw, ResultMap resultMap, List<Class<?>> constructorArgTypes, List<Object> constructorArgs, String columnPrefix)
             throws SQLException {
         final Class<?> resultType = resultMap.getType();
-        final MetaClass metaType = DefaultMetaClass.forClass(resultType, reflectorFactory);
+        final MetaClass metaType = MetaClassFactory.forClass(resultType);
         final List<ResultMapping> constructorMappings = resultMap.getConstructorResultMappings();
         if (typeHandlerRegistry.hasTypeHandler(resultType)) {
             return createPrimitiveResultObject(rsw, resultMap, columnPrefix);

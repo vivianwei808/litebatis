@@ -157,12 +157,6 @@ public class DefaultConfiguration implements Configuration {
         statementHandler = (StatementHandler) interceptorChain.pluginAll(statementHandler);
         return statementHandler;
     }
-
-    @Override
-    public MetaObject newMetaObject(Object object) {
-        return DefaultMetaObject.forObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
-    }
-
     @Override
     public LocalCacheScope getLocalCacheScope() {
         return null;

@@ -5,6 +5,8 @@ import ognl.OgnlException;
 import ognl.OgnlRuntime;
 import ognl.PropertyAccessor;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.MetaObjectFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +17,6 @@ import java.util.Map;
 public class DefaultDynamicContext implements DynamicContext {
 
     public static final String PARAMETER_OBJECT_KEY = "_parameter";
-    public static final String DATABASE_ID_KEY = "_databaseId";
 
     static {
         OgnlRuntime.setPropertyAccessor(ContextMap.class, new ContextAccessor());
@@ -27,13 +28,12 @@ public class DefaultDynamicContext implements DynamicContext {
 
     public DefaultDynamicContext(Configuration configuration, Object parameterObject) {
         if (parameterObject != null && !(parameterObject instanceof Map)) {
-//            MetaObject metaObject = configuration.newMetaObject(parameterObject);
-//            bindings = new ContextMap(metaObject);
+            MetaObject metaObject = MetaObjectFactory.forObject(parameterObject);
+            bindings = new ContextMap(metaObject);
         } else {
-//            bindings = new ContextMap(null);
+            bindings = new ContextMap(null);
         }
         bindings.put(PARAMETER_OBJECT_KEY, parameterObject);
-//        bindings.put(DATABASE_ID_KEY, configuration.getDatabaseId());
     }
 
     public Map<String, Object> getBindings() {
@@ -46,7 +46,6 @@ public class DefaultDynamicContext implements DynamicContext {
 
     public void appendSql(String sql) {
         sqlBuilder.append(sql);
-//        sqlBuilder.append(" ");
     }
 
     public String getSql() {
@@ -60,10 +59,10 @@ public class DefaultDynamicContext implements DynamicContext {
     static class ContextMap extends HashMap<String, Object> {
         private static final long serialVersionUID = 2977601501966151582L;
 
-//        private MetaObject parameterMetaObject;
-//        public ContextMap(MetaObject parameterMetaObject) {
-//            this.parameterMetaObject = parameterMetaObject;
-//        }
+        private MetaObject metaObject;
+        public ContextMap(MetaObject metaObject) {
+            this.metaObject = metaObject;
+        }
 
         @Override
         public Object get(Object key) {
@@ -72,10 +71,9 @@ public class DefaultDynamicContext implements DynamicContext {
                 return super.get(strKey);
             }
 
-//            if (parameterMetaObject != null) {
-//                // issue #61 do not modify the context when reading
-//                return parameterMetaObject.getValue(strKey);
-//            }
+            if (metaObject != null) {
+                return metaObject.getValue(strKey);
+            }
 
             return null;
         }

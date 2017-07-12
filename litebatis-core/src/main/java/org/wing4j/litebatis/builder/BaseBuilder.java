@@ -2,6 +2,7 @@ package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.exception.BuilderException;
 import org.wing4j.litebatis.Configuration;
+import org.wing4j.litebatis.reflection.TypeAliasRegistry;
 import org.wing4j.litebatis.type.*;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.mapping.ResultSetType;
@@ -13,12 +14,10 @@ import java.util.regex.Pattern;
 
 public abstract class BaseBuilder {
   protected final Configuration configuration;
-  protected final TypeAliasRegistry typeAliasRegistry = null;
   protected final TypeHandlerRegistry typeHandlerRegistry;
 
   public BaseBuilder(Configuration configuration) {
     this.configuration = configuration;
-//    this.typeAliasRegistry = this.configuration.getTypeAliasRegistry();
     this.typeHandlerRegistry = this.configuration.getTypeHandlerRegistry();
   }
 
@@ -93,7 +92,8 @@ public abstract class BaseBuilder {
       return null;
     }
     try {
-      return resolveAlias(alias);
+      TypeAliasRegistry typeAliasRegistry = TypeAliasRegistryFactory.getInstance();
+      return typeAliasRegistry.resolveAlias(alias);
     } catch (Exception e) {
       throw new BuilderException("Error resolving class. Cause: " + e, e);
     }
@@ -123,9 +123,5 @@ public abstract class BaseBuilder {
       handler = typeHandlerRegistry.getInstance(javaType, typeHandlerType);
     }
     return handler;
-  }
-
-  protected Class<?> resolveAlias(String alias) {
-    return typeAliasRegistry.resolveAlias(alias);
   }
 }

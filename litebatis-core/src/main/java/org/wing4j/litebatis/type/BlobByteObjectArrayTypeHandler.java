@@ -15,6 +15,8 @@
  */
 package org.wing4j.litebatis.type;
 
+import org.wing4j.litebatis.type.utils.ByteArrayUtils;
+
 import java.io.ByteArrayInputStream;
 import java.sql.*;
 

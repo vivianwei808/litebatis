@@ -7,6 +7,7 @@ import org.wing4j.litebatis.exception.ExecutorException;
 import org.wing4j.litebatis.mapping.*;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.MetaObjectFactory;
 import org.wing4j.litebatis.session.LocalCacheScope;
 import org.wing4j.litebatis.session.ResultHandler;
 import org.wing4j.litebatis.session.RowBounds;
@@ -222,7 +223,7 @@ public abstract class BaseExecutor implements Executor {
                 } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {
                     value = parameterObject;
                 } else {
-                    MetaObject metaObject = configuration.newMetaObject(parameterObject);
+                    MetaObject metaObject = MetaObjectFactory.forObject(parameterObject);
                     value = metaObject.getValue(propertyName);
                 }
                 //4. 传递给java.sql.Statement要设置的参数值
@@ -306,8 +307,8 @@ public abstract class BaseExecutor implements Executor {
         if (ms.getStatementType() == StatementType.CALLABLE) {
             final Object cachedParameter = localOutputParameterCache.getObject(key);
             if (cachedParameter != null && parameter != null) {
-                final MetaObject metaCachedParameter = configuration.newMetaObject(cachedParameter);
-                final MetaObject metaParameter = configuration.newMetaObject(parameter);
+                final MetaObject metaCachedParameter = MetaObjectFactory.forObject(cachedParameter);
+                final MetaObject metaParameter = MetaObjectFactory.forObject(parameter);
                 for (ParameterMapping parameterMapping : boundSql.getParameterMappings()) {
                     if (parameterMapping.getMode() != ParameterMode.IN) {
                         final String parameterName = parameterMapping.getProperty();
