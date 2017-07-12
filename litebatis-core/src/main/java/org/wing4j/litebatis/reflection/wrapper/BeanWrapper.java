@@ -30,7 +30,7 @@ public class BeanWrapper extends BaseWrapper {
         }
     }
 
-    private Object getBeanProperty(PropertyTokenizer prop, Object object) {
+    Object getBeanProperty(PropertyTokenizer prop, Object object) {
         try {
             Invoker method = metaClass.getGetInvoker(prop.getName());
             try {
@@ -51,7 +51,21 @@ public class BeanWrapper extends BaseWrapper {
             Object collection = resolveCollection(prop, object);
             setCollectionValue(prop, collection, value);
         } else {
-//            setBeanProperty(prop, object, value);
+            setBeanProperty(prop, object, value);
+        }
+    }
+
+    void setBeanProperty(PropertyTokenizer prop, Object object, Object value) {
+        try {
+            Invoker method = metaClass.getSetInvoker(prop.getName());
+            Object[] params = {value};
+            try {
+                method.invoke(object, params);
+            } catch (Throwable t) {
+                throw new RuntimeException(t);
+            }
+        } catch (Throwable t) {
+            throw new ReflectionException("Could not set property '" + prop.getName() + "' of '" + object.getClass() + "' with value '" + value + "' Cause: " + t.toString(), t);
         }
     }
 
