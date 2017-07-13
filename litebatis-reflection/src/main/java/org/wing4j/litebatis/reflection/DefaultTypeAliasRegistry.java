@@ -117,6 +117,7 @@ public class DefaultTypeAliasRegistry implements TypeAliasRegistry{
 //    if (aliasAnnotation != null) {
 //      alias = aliasAnnotation.value();
 //    }
+    //TODO
     registerAlias(alias, type);
   }
 
