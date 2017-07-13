@@ -15,7 +15,7 @@
  */
 package org.wing4j.litebatis.type;
 
-import org.wing4j.litebatis.exception.TypeException;
+import org.wing4j.litebatis.reflection.exception.TypeException;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

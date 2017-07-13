@@ -1,8 +1,8 @@
 package org.wing4j.litebatis.type;
 
 
-import org.wing4j.litebatis.exception.TypeException;
-import org.wing4j.litebatis.io.ResolverUtil;
+import org.wing4j.litebatis.reflection.exception.TypeException;
+import org.wing4j.litebatis.reflection.io.ResolverUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;

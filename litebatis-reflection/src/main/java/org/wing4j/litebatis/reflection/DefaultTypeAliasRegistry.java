@@ -1,9 +1,8 @@
-package org.wing4j.litebatis.type;
+package org.wing4j.litebatis.reflection;
 
-import org.wing4j.litebatis.exception.TypeException;
-import org.wing4j.litebatis.io.ResolverUtil;
-import org.wing4j.litebatis.io.Resources;
-import org.wing4j.litebatis.reflection.TypeAliasRegistry;
+import org.wing4j.litebatis.reflection.exception.TypeException;
+import org.wing4j.litebatis.reflection.io.ResolverUtil;
+import org.wing4j.litebatis.reflection.io.Resources;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

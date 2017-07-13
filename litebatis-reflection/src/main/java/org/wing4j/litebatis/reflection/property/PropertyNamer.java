@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.reflection.property;
 
-import org.wing4j.litebatis.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 
 import java.util.Locale;
 

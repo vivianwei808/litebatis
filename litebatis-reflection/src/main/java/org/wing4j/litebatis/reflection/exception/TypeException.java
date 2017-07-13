@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.exception;
+package org.wing4j.litebatis.reflection.exception;
 
 
 public class TypeException extends RuntimeException {

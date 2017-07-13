@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
-import org.wing4j.litebatis.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.ObjectWrapper;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;

@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.reflection;
 
-import org.wing4j.litebatis.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.ObjectFactory;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;

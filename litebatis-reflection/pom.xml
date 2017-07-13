@@ -8,8 +8,8 @@
         <artifactId>litebatis</artifactId>
         <version>1.0.3</version>
     </parent>
-    <artifactId>litebatis-api</artifactId>
-    <name>litebatis接口</name>
+    <artifactId>litebatis-reflection</artifactId>
+    <name>litebatis反射</name>
     <description>This is the wing4j-litebatis member wing4j-orm-litebatis</description>
     <url>http://git.oschina.net/wing4j</url>
     <licenses>
@@ -20,9 +20,8 @@
     </licenses>
     <dependencies>
         <dependency>
-            <groupId>org.wing4j.litebatis</groupId>
-            <artifactId>litebatis-reflection</artifactId>
-            <version>1.0.3</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 </project>

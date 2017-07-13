@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
-import org.wing4j.litebatis.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.Invoker;
 import org.wing4j.litebatis.reflection.MetaClass;
 import org.wing4j.litebatis.reflection.MetaClassFactory;

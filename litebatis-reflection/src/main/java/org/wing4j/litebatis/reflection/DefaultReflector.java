@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.reflection;
 
-import org.wing4j.litebatis.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.invoker.SetFieldInvoker;

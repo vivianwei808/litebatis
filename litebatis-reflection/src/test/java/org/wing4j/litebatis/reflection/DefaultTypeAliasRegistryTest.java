@@ -1,10 +1,9 @@
-package org.wing4j.litebatis.type;
+package org.wing4j.litebatis.reflection;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.wing4j.litebatis.reflection.TypeAliasRegistry;
-
-import static org.junit.Assert.*;
+import org.wing4j.litebatis.reflection.TypeAliasRegistryFactory;
 
 /**
  * Created by wing4j on 2017/7/12.

@@ -1,6 +1,6 @@
 package org.wing4j.litebatis.type;
 
-import org.wing4j.litebatis.exception.TypeException;
+import org.wing4j.litebatis.reflection.exception.TypeException;
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.exception.ResultMapException;
 

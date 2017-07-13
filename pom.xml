@@ -21,6 +21,7 @@
     </licenses>
     <modules>
         <module>litebatis-annotation</module>
+        <module>litebatis-reflection</module>
         <module>litebatis-api</module>
         <module>litebatis-core</module>
         <!--<module>litebatis-dynamic</module>-->

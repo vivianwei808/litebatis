@@ -1,8 +1,6 @@
 package org.wing4j.litebatis.reflection;
 
-import org.wing4j.litebatis.exception.ReflectionException;
-import org.wing4j.litebatis.reflection.ObjectWrapper;
-import org.wing4j.litebatis.reflection.ObjectWrapperFactory;
+import org.wing4j.litebatis.reflection.exception.ReflectionException;
 
 public class DefaultObjectWrapperFactory implements ObjectWrapperFactory {
 
