@@ -14,7 +14,7 @@ public interface Invoker {
      * @throws IllegalAccessException
      * @throws InvocationTargetException
      */
-    Object invoke(Object target, Object[] args) throws IllegalAccessException, InvocationTargetException;
+    Object invoke(Object target, Object... args) throws IllegalAccessException, InvocationTargetException;
 
     /**
      * 方法返回类型

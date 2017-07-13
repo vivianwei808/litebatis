@@ -4,9 +4,6 @@ import org.wing4j.litebatis.reflection.exception.ReflectionException;
 
 import java.util.Locale;
 
-/**
- *
- */
 public final class PropertyNamer {
 
   private PropertyNamer() {

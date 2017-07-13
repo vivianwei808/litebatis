@@ -1,6 +1,7 @@
 package org.wing4j.litebatis.reflection;
 
 import org.wing4j.litebatis.reflection.exception.TypeException;
+import org.wing4j.litebatis.reflection.io.IsA;
 import org.wing4j.litebatis.reflection.io.ResolverUtil;
 import org.wing4j.litebatis.reflection.io.Resources;
 
@@ -100,7 +101,7 @@ public class DefaultTypeAliasRegistry implements TypeAliasRegistry{
 
   public void registerAliases(String packageName, Class<?> superType){
     ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<Class<?>>();
-    resolverUtil.find(new ResolverUtil.IsA(superType), packageName);
+    resolverUtil.find(new IsA(superType), packageName);
     Set<Class<? extends Class<?>>> typeSet = resolverUtil.getClasses();
     for(Class<?> type : typeSet){
       // Ignore inner classes and interfaces (including package-info.java)

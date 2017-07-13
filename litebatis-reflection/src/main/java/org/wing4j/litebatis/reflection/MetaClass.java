@@ -36,9 +36,8 @@ public interface MetaClass {
      * @return
      */
     String findProperty(String name, boolean useCamelCaseMapping);
-
     /**
-     *
+     * 根据字段名提取属性名称，可能返回很复杂的名称
      * @param name
      * @param builder
      * @return
