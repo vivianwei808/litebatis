@@ -1,8 +1,11 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
+import org.wing4j.litebatis.reflection.DefaultMetaObject;
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.ObjectFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -128,6 +131,18 @@ public class MapWrapper extends BaseWrapper {
     @Override
     public <E> void addAll(List<E> element) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> Object getNativeObject() {
+        return map;
+    }
+
+    @Override
+    public MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        set(prop, map);
+        return new DefaultMetaObject(map, metaObject.getObjectFactory(), metaObject.getObjectWrapperFactory(), metaObject.getReflectorFactory());
     }
 
 }

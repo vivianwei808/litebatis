@@ -85,4 +85,12 @@ public interface ObjectWrapper {
      */
     <E> void addAll(List<E> element);
 
+    /**
+     * 获取原始对象
+     * @param <T>
+     * @return
+     */
+    <T> Object getNativeObject();
+
+    MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory);
 }

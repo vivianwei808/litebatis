@@ -1,10 +1,7 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
+import org.wing4j.litebatis.reflection.*;
 import org.wing4j.litebatis.reflection.exception.ReflectionException;
-import org.wing4j.litebatis.reflection.Invoker;
-import org.wing4j.litebatis.reflection.MetaClass;
-import org.wing4j.litebatis.reflection.MetaClassFactory;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
 import java.util.List;
@@ -169,6 +166,25 @@ public class BeanWrapper extends BaseWrapper {
     @Override
     public <E> void addAll(List<E> list) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> T getNativeObject() {
+        return (T) object;
+    }
+
+    @Override
+    public MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory) {
+        MetaObject metaValue;
+        Class<?> type = getSetterType(prop.getName());
+        try {
+            Object newObject = objectFactory.create(type);
+            metaValue = new DefaultMetaObject(newObject, metaObject.getObjectFactory(), metaObject.getObjectWrapperFactory(), metaObject.getReflectorFactory());
+            set(prop, newObject);
+        } catch (Exception e) {
+            throw new ReflectionException("Cannot set value of property '" + name + "' because '" + name + "' is null and cannot be instantiated on instance of " + type.getName() + ". Cause:" + e.toString(), e);
+        }
+        return metaValue;
     }
 
 }

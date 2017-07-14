@@ -99,6 +99,7 @@ public class DefaultMetaClass implements MetaClass{
     public boolean hasDefaultConstructor() {
         return reflector.hasDefaultConstructor();
     }
+    
     public MetaClass metaClassForProperty(String name) {
         Class<?> propType = reflector.getGetterType(name);
         return new DefaultMetaClass(propType, reflectorFactory);

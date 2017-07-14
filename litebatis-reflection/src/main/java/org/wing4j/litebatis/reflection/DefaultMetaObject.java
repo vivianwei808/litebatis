@@ -33,7 +33,7 @@ public class DefaultMetaObject implements MetaObject {
 //        }
 //    }
 
-    DefaultMetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
+    public DefaultMetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         this.originalObject = object;
         this.objectFactory = objectFactory;
         this.objectWrapperFactory = objectWrapperFactory;
@@ -64,7 +64,21 @@ public class DefaultMetaObject implements MetaObject {
 
     @Override
     public void setValue(String fieldName, Object value) {
-
+        PropertyTokenizer prop = new PropertyTokenizer(fieldName);
+        if (prop.hasNext()) {
+            MetaObject metaValue = metaObjectForProperty(prop.getIndexedName());
+            if (metaValue == DefaultObjectFactory.NULL_META_OBJECT) {
+                if (value == null && prop.getChildren() != null) {
+                    // don't instantiate child path if value is null
+                    return;
+                } else {
+                    metaValue = objectWrapper.instantiatePropertyValue(fieldName, prop, objectFactory);
+                }
+            }
+            metaValue.setValue(prop.getChildren(), value);
+        } else {
+            objectWrapper.set(prop, value);
+        }
     }
 
     @Override
@@ -90,6 +104,16 @@ public class DefaultMetaObject implements MetaObject {
     @Override
     public Class<?> getGetterType(String fieldName) {
         return null;
+    }
+
+    @Override
+    public String[] getGetterNames() {
+        return objectWrapper.getGetterNames();
+    }
+
+    @Override
+    public String[] getSetterNames() {
+        return objectWrapper.getSetterNames();
     }
 
     @Override

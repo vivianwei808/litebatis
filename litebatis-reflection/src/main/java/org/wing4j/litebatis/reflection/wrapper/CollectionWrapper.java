@@ -1,6 +1,7 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
 import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.ObjectFactory;
 import org.wing4j.litebatis.reflection.ObjectWrapper;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
@@ -73,6 +74,16 @@ public class CollectionWrapper implements ObjectWrapper {
   @Override
   public <E> void addAll(List<E> element) {
     object.addAll(element);
+  }
+
+  @Override
+  public <T> T getNativeObject() {
+    return (T) object;
+  }
+
+  @Override
+  public MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory) {
+    throw new UnsupportedOperationException();
   }
 
 }

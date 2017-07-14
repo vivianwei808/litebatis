@@ -1,13 +1,16 @@
 package org.wing4j.litebatis.reflection;
 
-import org.wing4j.litebatis.reflection.ObjectFactory;
 import org.wing4j.litebatis.reflection.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.wrapper.NullObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
+  public static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
+  public static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
+  static final MetaObject NULL_META_OBJECT = new DefaultMetaObject(NullObject.class, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, new DefaultReflectorFactory());
 
   private static final long serialVersionUID = -8855120656740914948L;
 

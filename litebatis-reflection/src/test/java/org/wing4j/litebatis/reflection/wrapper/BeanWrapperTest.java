@@ -3,9 +3,9 @@ package org.wing4j.litebatis.reflection;
 import org.junit.Test;
 import org.wing4j.litebatis.reflection.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.ObjectWrapper;
+import org.wing4j.litebatis.reflection.property.DemoBean;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 import org.wing4j.litebatis.reflection.wrapper.BeanWrapper;
-import org.wing4j.litebatis.reflection.wrapper.DemoBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
