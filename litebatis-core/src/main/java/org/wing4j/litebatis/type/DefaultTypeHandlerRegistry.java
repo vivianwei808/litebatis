@@ -2,6 +2,7 @@ package org.wing4j.litebatis.type;
 
 
 import org.wing4j.litebatis.reflection.exception.TypeException;
+import org.wing4j.litebatis.reflection.io.IsA;
 import org.wing4j.litebatis.reflection.io.ResolverUtil;
 
 import java.lang.reflect.Constructor;
@@ -299,7 +300,7 @@ public final class DefaultTypeHandlerRegistry implements TypeHandlerRegistry{
 
   public void register(String packageName) {
     ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<Class<?>>();
-    resolverUtil.find(new ResolverUtil.IsA(TypeHandler.class), packageName);
+    resolverUtil.find(new IsA(TypeHandler.class), packageName);
     Set<Class<? extends Class<?>>> handlerSet = resolverUtil.getClasses();
     for (Class<?> type : handlerSet) {
       //Ignore inner classes and interfaces (including package-info.java) and abstract classes

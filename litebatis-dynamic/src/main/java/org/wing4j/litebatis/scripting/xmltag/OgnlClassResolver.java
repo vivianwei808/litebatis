@@ -1,7 +1,7 @@
 package org.wing4j.litebatis.scripting.xmltag;
 
 import ognl.ClassResolver;
-import org.wing4j.litebatis.io.Resources;
+import org.wing4j.litebatis.reflection.io.Resources;
 
 import java.util.HashMap;
 import java.util.Map;
