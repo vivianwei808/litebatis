@@ -66,6 +66,8 @@ public interface MetaObject {
 
     Object getOriginalObject();
 
+    boolean isCollection();
+
     <E> void addAll(List<E> list);
 
     void add(Object element);

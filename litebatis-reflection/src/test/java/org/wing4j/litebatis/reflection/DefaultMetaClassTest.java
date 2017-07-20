@@ -263,4 +263,23 @@ public class DefaultMetaClassTest {
         assertTrue(meta.hasGetter("filterParams[2]"));
     }
 
+    @Test
+    public void shouldCheckGetterExistance() {
+        MetaClass meta = MetaClassFactory.forClass(RichType.class);
+        assertTrue(meta.hasGetter("richField"));
+        assertTrue(meta.hasGetter("richProperty"));
+        assertTrue(meta.hasGetter("richList"));
+        assertTrue(meta.hasGetter("richMap"));
+        assertTrue(meta.hasGetter("richList[0]"));
+
+        assertTrue(meta.hasGetter("richType"));
+        assertTrue(meta.hasGetter("richType.richField"));
+        assertTrue(meta.hasGetter("richType.richProperty"));
+        assertTrue(meta.hasGetter("richType.richList"));
+        assertTrue(meta.hasGetter("richType.richMap"));
+        assertTrue(meta.hasGetter("richType.richList[0]"));
+
+        assertFalse(meta.hasGetter("[0]"));
+    }
+
 }

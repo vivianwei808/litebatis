@@ -25,14 +25,6 @@ public class DefaultMetaObject implements MetaObject {
     @Getter
     ReflectorFactory reflectorFactory;
 
-//    public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
-//        if (object == null) {
-//            return null;
-//        } else {
-//            return new DefaultMetaObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
-//        }
-//    }
-
     public DefaultMetaObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         this.originalObject = object;
         this.objectFactory = objectFactory;
@@ -121,23 +113,23 @@ public class DefaultMetaObject implements MetaObject {
         return null;
     }
 
+    @Override
+    public boolean isCollection() {
+        return objectWrapper.isCollection();
+    }
+
     public MetaObject metaObjectForProperty(String name) {
         Object value = getValue(name);
         return MetaObjectFactory.forObject(value, objectFactory, objectWrapperFactory, reflectorFactory);
     }
 
     @Override
-    public Object getOriginalObject() {
-        return null;
-    }
-
-    @Override
     public <E> void addAll(List<E> list) {
-
+        objectWrapper.addAll(list);
     }
 
     @Override
     public void add(Object element) {
-
+        objectWrapper.add(element);
     }
 }
