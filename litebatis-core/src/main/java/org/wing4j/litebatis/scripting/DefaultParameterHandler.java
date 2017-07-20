@@ -53,8 +53,8 @@ public class DefaultParameterHandler implements ParameterHandler {
         if (parameterMapping.getMode() != ParameterMode.OUT) {
           Object value = null;
           String propertyName = parameterMapping.getProperty();
-          if (boundSql.hasAdditionalParameter(propertyName)) { // issue #448 ask first for additional params
-            value = boundSql.getAdditionalParameter(propertyName);
+          if (boundSql.hasParameter(propertyName)) { // issue #448 ask first for additional params
+            value = boundSql.getParameter(propertyName);
           } else if (parameterObject == null) {
             value = null;
           } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {

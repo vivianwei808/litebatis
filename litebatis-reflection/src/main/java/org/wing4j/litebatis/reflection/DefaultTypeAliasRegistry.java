@@ -2,7 +2,7 @@ package org.wing4j.litebatis.reflection;
 
 import org.wing4j.litebatis.reflection.exception.TypeException;
 import org.wing4j.litebatis.reflection.io.IsA;
-import org.wing4j.litebatis.reflection.io.ResolverUtil;
+import org.wing4j.litebatis.reflection.io.Resolver;
 import org.wing4j.litebatis.reflection.io.Resources;
 
 import java.math.BigDecimal;
@@ -100,7 +100,7 @@ public class DefaultTypeAliasRegistry implements TypeAliasRegistry{
   }
 
   public void registerAliases(String packageName, Class<?> superType){
-    ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<Class<?>>();
+    Resolver<Class<?>> resolverUtil = new Resolver<Class<?>>();
     resolverUtil.find(new IsA(superType), packageName);
     Set<Class<? extends Class<?>>> typeSet = resolverUtil.getClasses();
     for(Class<?> type : typeSet){

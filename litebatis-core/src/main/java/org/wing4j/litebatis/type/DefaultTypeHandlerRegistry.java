@@ -3,7 +3,7 @@ package org.wing4j.litebatis.type;
 
 import org.wing4j.litebatis.reflection.exception.TypeException;
 import org.wing4j.litebatis.reflection.io.IsA;
-import org.wing4j.litebatis.reflection.io.ResolverUtil;
+import org.wing4j.litebatis.reflection.io.Resolver;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -299,7 +299,7 @@ public final class DefaultTypeHandlerRegistry implements TypeHandlerRegistry{
   // scan
 
   public void register(String packageName) {
-    ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<Class<?>>();
+    Resolver<Class<?>> resolverUtil = new Resolver<Class<?>>();
     resolverUtil.find(new IsA(TypeHandler.class), packageName);
     Set<Class<? extends Class<?>>> handlerSet = resolverUtil.getClasses();
     for (Class<?> type : handlerSet) {

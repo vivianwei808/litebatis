@@ -34,15 +34,14 @@ public interface BoundSql {
      * @param name 参数名
      * @return 存在返回真
      */
-    boolean hasAdditionalParameter(String name);
+    boolean hasParameter(String name);
 
     /**
      * 设置附加参数值
-     *
-     * @param name  参数名
+     *  @param name  参数名
      * @param value 参数值
      */
-    void setAdditionalParameter(String name, Object value);
+    void setParameter(String name, Object value);
 
     /**
      * 获取附加参数值
@@ -50,5 +49,5 @@ public interface BoundSql {
      * @param name 参数名
      * @return 参数值
      */
-    <T> T getAdditionalParameter(String name);
+    <T> T getParameter(String name);
 }

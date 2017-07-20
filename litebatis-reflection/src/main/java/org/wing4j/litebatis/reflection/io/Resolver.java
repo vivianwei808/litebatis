@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-public class ResolverUtil<T> {
+public class Resolver<T> {
 
   /** The set of matches being accumulated. */
   private Set<Class<? extends T>> matches = new HashSet<Class<? extends T>>();
@@ -57,7 +57,7 @@ public class ResolverUtil<T> {
    * @param parent the class of interface to find subclasses or implementations of
    * @param packageNames one or more package names to scan (including subpackages) for classes
    */
-  public ResolverUtil<T> findImplementations(Class<?> parent, String... packageNames) {
+  public Resolver<T> findImplementations(Class<?> parent, String... packageNames) {
     if (packageNames == null) {
       return this;
     }
@@ -77,7 +77,7 @@ public class ResolverUtil<T> {
    * @param annotation the annotation that should be present on matching classes
    * @param packageNames one or more package names to scan (including subpackages) for classes
    */
-  public ResolverUtil<T> findAnnotated(Class<? extends Annotation> annotation, String... packageNames) {
+  public Resolver<T> findAnnotated(Class<? extends Annotation> annotation, String... packageNames) {
     if (packageNames == null) {
       return this;
     }
@@ -100,7 +100,7 @@ public class ResolverUtil<T> {
    * @param packageName the name of the package from which to start scanning for
    *        classes, e.g. {@code net.sourceforge.stripes}
    */
-  public ResolverUtil<T> find(Test test, String packageName) {
+  public Resolver<T> find(Test test, String packageName) {
     String path = getPackagePath(packageName);
 
     return this;

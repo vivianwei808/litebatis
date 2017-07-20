@@ -39,7 +39,7 @@ public class StaticSqlSourceTest {
         bean1.setName("this is a test");
         BoundSql boundSql = sqlSource.getBoundSql(bean1);
         boundSql.getSql();
-        String name = boundSql.getAdditionalParameter("name");
+        String name = boundSql.getParameter("name");
         System.out.println(name);
     }
 }

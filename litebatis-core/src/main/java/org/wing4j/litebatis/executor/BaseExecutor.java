@@ -216,8 +216,8 @@ public abstract class BaseExecutor implements Executor {
             if (parameterMapping.getMode() != ParameterMode.OUT) {
                 Object value = null;
                 String propertyName = parameterMapping.getProperty();
-                if (boundSql.hasAdditionalParameter(propertyName)) {
-                    value = boundSql.getAdditionalParameter(propertyName);
+                if (boundSql.hasParameter(propertyName)) {
+                    value = boundSql.getParameter(propertyName);
                 } else if (parameterObject == null) {
                     value = null;
                 } else if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())) {

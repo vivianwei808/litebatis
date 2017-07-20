@@ -1,13 +1,10 @@
 package org.wing4j.litebatis.mapping;
 
 import org.wing4j.litebatis.Configuration;
-import org.wing4j.litebatis.mapping.ParameterMapping;
 import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.MetaObjectFactory;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wing4j on 2017/5/15.
@@ -38,15 +35,15 @@ public class DefaultBoundSql implements BoundSql{
         return parameterObject;
     }
 
-    public boolean hasAdditionalParameter(String name) {
+    public boolean hasParameter(String name) {
         return metaParameters.hasGetter(name);
     }
 
-    public void setAdditionalParameter(String name, Object value) {
+    public void setParameter(String name, Object value) {
         metaParameters.setValue(name, value);
     }
 
-    public <T> T getAdditionalParameter(String name) {
+    public <T> T getParameter(String name) {
         return metaParameters.getValue(name);
     }
 }
