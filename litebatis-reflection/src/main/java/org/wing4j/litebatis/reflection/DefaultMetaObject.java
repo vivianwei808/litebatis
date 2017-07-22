@@ -1,6 +1,8 @@
 package org.wing4j.litebatis.reflection;
 
 import lombok.Getter;
+import org.wing4j.litebatis.reflection.factory.DefaultObjectFactory;
+import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 import org.wing4j.litebatis.reflection.wrapper.BeanWrapper;
 import org.wing4j.litebatis.reflection.wrapper.CollectionWrapper;

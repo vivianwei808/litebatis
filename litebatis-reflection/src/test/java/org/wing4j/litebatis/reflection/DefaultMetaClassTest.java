@@ -1,6 +1,8 @@
 package org.wing4j.litebatis.reflection;
 
 import org.junit.Test;
+import org.wing4j.litebatis.reflection.factory.MetaClassFactory;
+import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.wrapper.Author;
 import org.wing4j.litebatis.reflection.wrapper.RichType;
 import org.wing4j.litebatis.reflection.wrapper.Section;

@@ -2,14 +2,11 @@ package org.wing4j.litebatis.reflection.wrapper;
 
 import org.junit.Test;
 import org.wing4j.litebatis.reflection.*;
+import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.property.DemoBean;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
-import org.wing4j.litebatis.reflection.wrapper.BeanWrapper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by wing4j on 2017/7/12.

@@ -1,4 +1,7 @@
-package org.wing4j.litebatis.reflection;
+package org.wing4j.litebatis.reflection.factory;
+
+import org.wing4j.litebatis.reflection.DefaultTypeAliasRegistry;
+import org.wing4j.litebatis.reflection.TypeAliasRegistry;
 
 /**
  * Created by wing4j on 2017/7/12.

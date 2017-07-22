@@ -1,5 +1,9 @@
-package org.wing4j.litebatis.reflection;
+package org.wing4j.litebatis.reflection.factory;
 
+import org.wing4j.litebatis.reflection.DefaultMetaObject;
+import org.wing4j.litebatis.reflection.MetaObject;
+import org.wing4j.litebatis.reflection.ObjectFactory;
+import org.wing4j.litebatis.reflection.ObjectWrapperFactory;
 import org.wing4j.litebatis.reflection.exception.ReflectionException;
 import org.wing4j.litebatis.reflection.wrapper.NullObject;
 
@@ -10,7 +14,7 @@ import java.util.*;
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
   public static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
   public static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
-  static final MetaObject NULL_META_OBJECT = new DefaultMetaObject(NullObject.class, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, new DefaultReflectorFactory());
+  public static final MetaObject NULL_META_OBJECT = new DefaultMetaObject(NullObject.class, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, new DefaultReflectorFactory());
 
   private static final long serialVersionUID = -8855120656740914948L;
 
@@ -35,6 +39,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
   <T> T instantiateClass(Class<T> type, List<Class<?>> constructorArgTypes, List<Object> constructorArgs) {
     try {
       Constructor<T> constructor;
+      //如果参数值或者参数类型为空，则采用默认构造函数进行创建
       if (constructorArgTypes == null || constructorArgs == null) {
         constructor = type.getDeclaredConstructor();
         if (!constructor.isAccessible()) {
@@ -42,6 +47,7 @@ public class DefaultObjectFactory implements ObjectFactory, Serializable {
         }
         return constructor.newInstance();
       }
+      //如果参数值或者参数类型不为空，则采用带有参数的构造函数
       constructor = type.getDeclaredConstructor(constructorArgTypes.toArray(new Class[constructorArgTypes.size()]));
       if (!constructor.isAccessible()) {
         constructor.setAccessible(true);

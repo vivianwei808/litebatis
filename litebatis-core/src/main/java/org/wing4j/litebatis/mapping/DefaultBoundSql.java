@@ -2,7 +2,7 @@ package org.wing4j.litebatis.mapping;
 
 import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.reflection.MetaObject;
-import org.wing4j.litebatis.reflection.MetaObjectFactory;
+import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 
 import java.util.List;
 

@@ -1,12 +1,10 @@
 package org.wing4j.litebatis;
 
-import org.wing4j.litebatis.cache.Cache;
 import org.wing4j.litebatis.executor.Executor;
 import org.wing4j.litebatis.executor.parameter.ParameterHandler;
 import org.wing4j.litebatis.executor.resultset.ResultSetHandler;
 import org.wing4j.litebatis.executor.statement.StatementHandler;
 import org.wing4j.litebatis.mapping.*;
-import org.wing4j.litebatis.reflection.MetaObject;
 import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.reflection.ObjectFactory;
 import org.wing4j.litebatis.session.*;
@@ -14,7 +12,6 @@ import org.wing4j.litebatis.transaction.Transaction;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
 import java.util.Collection;
-import java.util.Properties;
 
 /**
  * Created by wing4j on 2017/5/16.

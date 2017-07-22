@@ -2,6 +2,7 @@ package org.wing4j.litebatis.reflection.wrapper;
 
 import org.wing4j.litebatis.reflection.*;
 import org.wing4j.litebatis.reflection.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.factory.MetaClassFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
 import java.util.List;

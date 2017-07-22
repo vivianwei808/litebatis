@@ -1,7 +1,8 @@
-package org.wing4j.litebatis.reflection;
+package org.wing4j.litebatis.reflection.factory;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.wing4j.litebatis.reflection.*;
 
 /**
  * Created by wing4j on 2017/7/12.

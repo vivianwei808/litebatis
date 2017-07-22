@@ -11,6 +11,8 @@ import org.wing4j.litebatis.mapping.MappedStatement;
 import org.wing4j.litebatis.mapping.ResultMap;
 import org.wing4j.litebatis.mapping.ResultMapping;
 import org.wing4j.litebatis.reflection.*;
+import org.wing4j.litebatis.reflection.factory.MetaClassFactory;
+import org.wing4j.litebatis.reflection.ReflectorFactory;
 import org.wing4j.litebatis.session.AutoMappingBehavior;
 import org.wing4j.litebatis.session.ResultContext;
 import org.wing4j.litebatis.session.ResultHandler;

@@ -1,13 +1,11 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
 import org.junit.Test;
-import org.wing4j.litebatis.reflection.MetaObjectFactory;
+import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by wing4j on 2017/7/14.
