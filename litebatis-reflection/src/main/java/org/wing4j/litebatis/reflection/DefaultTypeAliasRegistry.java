@@ -15,7 +15,7 @@ public class DefaultTypeAliasRegistry implements TypeAliasRegistry{
 
   private static final Map<String, Class<?>> TYPE_ALIASES = new ConcurrentHashMap();
 
-  DefaultTypeAliasRegistry() {
+  public DefaultTypeAliasRegistry() {
     registerAlias("string", String.class);
 
     registerAlias("byte", Byte.class);

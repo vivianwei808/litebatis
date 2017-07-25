@@ -1,5 +1,6 @@
 package org.wing4j.litebatis.reflection;
 
+import org.wing4j.litebatis.reflection.factory.MetaClassFactory;
 import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
@@ -17,9 +18,14 @@ public class DefaultMetaClass implements MetaClass{
     private ReflectorFactory reflectorFactory;
     private Reflector reflector;
 
-    DefaultMetaClass(Class<?> type, ReflectorFactory reflectorFactory) {
+    public DefaultMetaClass(Class<?> type, ReflectorFactory reflectorFactory) {
         this.reflectorFactory = reflectorFactory;
         this.reflector = reflectorFactory.findForClass(type);
+    }
+
+    public MetaClass metaClassForProperty(String name) {
+        Class<?> propType = reflector.getGetterType(name);
+        return MetaClassFactory.forClass(propType);
     }
     @Override
     public boolean hasGetter(String fieldName) {
@@ -96,13 +102,38 @@ public class DefaultMetaClass implements MetaClass{
     }
 
     @Override
+    public Class<?> getSetterType(String property) {
+        PropertyTokenizer prop = new PropertyTokenizer(property);
+        if (prop.hasNext()) {
+            MetaClass metaProp = metaClassForProperty(prop.getName());
+            return metaProp.getSetterType(prop.getChildren());
+        } else {
+            return reflector.getSetterType(prop.getName());
+        }
+    }
+
+    public Class<?> getSetterType(PropertyTokenizer prop) {
+        Class<?> type = reflector.getGetterType(prop.getName());
+        if (prop.getIndex() != null && Collection.class.isAssignableFrom(type)) {
+            Type returnType = getGenericGetterType(prop.getName());
+            if (returnType instanceof ParameterizedType) {
+                Type[] actualTypeArguments = ((ParameterizedType) returnType).getActualTypeArguments();
+                if (actualTypeArguments != null && actualTypeArguments.length == 1) {
+                    returnType = actualTypeArguments[0];
+                    if (returnType instanceof Class) {
+                        type = (Class<?>) returnType;
+                    } else if (returnType instanceof ParameterizedType) {
+                        type = (Class<?>) ((ParameterizedType) returnType).getRawType();
+                    }
+                }
+            }
+        }
+        return type;
+    }
+
+    @Override
     public boolean hasDefaultConstructor() {
         return reflector.hasDefaultConstructor();
-    }
-    
-    public MetaClass metaClassForProperty(String name) {
-        Class<?> propType = reflector.getGetterType(name);
-        return new DefaultMetaClass(propType, reflectorFactory);
     }
 
     private MetaClass metaClassForProperty(PropertyTokenizer prop) {

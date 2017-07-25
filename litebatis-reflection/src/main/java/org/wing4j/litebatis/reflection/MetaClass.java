@@ -38,31 +38,32 @@ public interface MetaClass {
     String findProperty(String name, boolean useCamelCaseMapping);
     /**
      * 根据字段名提取属性名称，可能返回很复杂的名称
-     * @param name
+     * @param property
      * @param builder
      * @return
      */
-    StringBuilder buildProperty(String name, StringBuilder builder);
+    StringBuilder buildProperty(String property, StringBuilder builder);
     /**
      * 获取Getter执行器
-     * @param fieldName 字段名
+     * @param property 字段名
      * @return 执行器
      */
-    Invoker getGetInvoker(String fieldName);
+    Invoker getGetInvoker(String property);
     /**
      * 获取Setter执行器
-     * @param fieldName 字段名
+     * @param property 字段名
      * @return 执行器
      */
-    Invoker getSetInvoker(String fieldName);
+    Invoker getSetInvoker(String property);
 
     /**
      * 获取Getter返回值类型
-     * @param fieldName 字段名
+     * @param property 字段名
      * @return 类型
      */
-    Class<?> getGetterType(String fieldName);
+    Class<?> getGetterType(String property);
 
+    Class<?> getSetterType(String property);
     /**
      * 是否存在默认构造函数
      * @return 返回真

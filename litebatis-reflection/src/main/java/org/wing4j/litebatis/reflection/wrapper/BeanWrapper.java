@@ -20,7 +20,8 @@ public class BeanWrapper extends BaseWrapper {
 
     @Override
     public Object get(PropertyTokenizer prop) {
-        if (prop.getIndex() != null) {
+        String index = prop.getIndex();
+        if (index != null) {
             Object collection = resolveCollection(prop, object);
             return getCollectionValue(prop, collection);
         } else {
@@ -30,7 +31,8 @@ public class BeanWrapper extends BaseWrapper {
 
     Object getBeanProperty(PropertyTokenizer prop, Object object) {
         try {
-            Invoker method = metaClass.getGetInvoker(prop.getName());
+            String property = prop.getName();
+            Invoker method = metaClass.getGetInvoker(property);
             try {
                 return method.invoke(object, NO_ARGUMENTS);
             } catch (Throwable t) {
@@ -84,18 +86,17 @@ public class BeanWrapper extends BaseWrapper {
 
     @Override
     public Class<?> getSetterType(String name) {
-//        PropertyTokenizer prop = new PropertyTokenizer(name);
-//        if (prop.hasNext()) {
-//            MetaObject metaValue = metaObject.metaObjectForProperty(prop.getIndexedName());
-//            if (metaValue == SystemMetaObject.NULL_META_OBJECT) {
-//                return metaClass.getSetterType(name);
-//            } else {
-//                return metaValue.getSetterType(prop.getChildren());
-//            }
-//        } else {
-//            return metaClass.getSetterType(name);
-//        }
-        return null;
+        PropertyTokenizer prop = new PropertyTokenizer(name);
+        if (prop.hasNext()) {
+            MetaObject metaValue = metaObject.metaObjectForProperty(prop.getIndexedName());
+            if (metaValue == SystemMetaObject.NULL_META_OBJECT) {
+                return metaClass.getSetterType(name);
+            } else {
+                return metaValue.getSetterType(prop.getChildren());
+            }
+        } else {
+            return metaClass.getSetterType(name);
+        }
     }
 
     @Override

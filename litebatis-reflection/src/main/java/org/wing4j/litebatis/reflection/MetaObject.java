@@ -78,5 +78,6 @@ public interface MetaObject {
 
     ObjectWrapperFactory getObjectWrapperFactory();
 
+    MetaObject metaObjectForProperty(String property);
 
 }

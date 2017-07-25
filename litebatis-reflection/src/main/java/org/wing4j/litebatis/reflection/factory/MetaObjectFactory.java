@@ -25,7 +25,7 @@ public class MetaObjectFactory {
     }
     public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory){
         if (object == null) {
-            return null;
+            return SystemMetaObject.NULL_META_OBJECT;
         } else {
             return new DefaultMetaObject(object, objectFactory, objectWrapperFactory, reflectorFactory);
         }

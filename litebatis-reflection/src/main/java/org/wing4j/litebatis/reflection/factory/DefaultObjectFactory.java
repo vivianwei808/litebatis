@@ -14,7 +14,7 @@ import java.util.*;
 public class DefaultObjectFactory implements ObjectFactory, Serializable {
   public static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
   public static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
-  public static final MetaObject NULL_META_OBJECT = new DefaultMetaObject(NullObject.class, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, new DefaultReflectorFactory());
+//  public static final MetaObject NULL_META_OBJECT = new DefaultMetaObject(NullObject.class, DEFAULT_OBJECT_FACTORY, DEFAULT_OBJECT_WRAPPER_FACTORY, new DefaultReflectorFactory());
 
   private static final long serialVersionUID = -8855120656740914948L;
 

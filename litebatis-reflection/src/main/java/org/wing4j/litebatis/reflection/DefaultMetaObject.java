@@ -60,8 +60,9 @@ public class DefaultMetaObject implements MetaObject {
     public void setValue(String fieldName, Object value) {
         PropertyTokenizer prop = new PropertyTokenizer(fieldName);
         if (prop.hasNext()) {
-            MetaObject metaValue = metaObjectForProperty(prop.getIndexedName());
-            if (metaValue == DefaultObjectFactory.NULL_META_OBJECT) {
+            String indexedName = prop.getIndexedName();
+            MetaObject metaValue = metaObjectForProperty(indexedName);
+            if (metaValue == SystemMetaObject.NULL_META_OBJECT) {
                 if (value == null && prop.getChildren() != null) {
                     // don't instantiate child path if value is null
                     return;
@@ -79,7 +80,8 @@ public class DefaultMetaObject implements MetaObject {
     public <T> T getValue(String fieldName) {
         PropertyTokenizer prop = new PropertyTokenizer(fieldName);
         if (prop.hasNext()) {
-            MetaObject metaValue = metaObjectForProperty(prop.getIndexedName());
+            String indexedName = prop.getIndexedName();
+            MetaObject metaValue = metaObjectForProperty(indexedName);
             if (metaValue == null) {
                 return null;
             } else {
@@ -92,12 +94,12 @@ public class DefaultMetaObject implements MetaObject {
 
     @Override
     public Class<?> getSetterType(String fieldName) {
-        return null;
+        return objectWrapper.getSetterType(fieldName);
     }
 
     @Override
     public Class<?> getGetterType(String fieldName) {
-        return null;
+        return objectWrapper.getGetterType(fieldName);
     }
 
     @Override
@@ -112,7 +114,7 @@ public class DefaultMetaObject implements MetaObject {
 
     @Override
     public String findProperty(String propName, boolean useCamelCaseMapping) {
-        return null;
+        return objectWrapper.findProperty(propName, useCamelCaseMapping);
     }
 
     @Override
