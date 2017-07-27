@@ -59,12 +59,12 @@ public class DefaultMetaClass implements MetaClass{
 
     @Override
     public String[] getGetterNames() {
-        return reflector.getGetablePropertyNames();
+        return reflector.getGettablePropertyNames();
     }
 
     @Override
     public String[] getSetterNames() {
-        return reflector.getSetablePropertyNames();
+        return reflector.getSettablePropertyNames();
     }
     @Override
     public String findProperty(String name) {

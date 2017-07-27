@@ -16,14 +16,11 @@ public class MetaObjectFactory {
     @Getter
     final static ReflectorFactory REFLECTOR_FACTORY = new DefaultReflectorFactory();
 
-    public static MetaObject forObject(Object object){
-        if (object == null) {
-            return null;
-        } else {
-            return new DefaultMetaObject(object, OBJECT_FACTORY, OBJECT_WRAPPER_FACTORY, REFLECTOR_FACTORY);
-        }
+    public static MetaObject forObject(Object object) {
+        return forObject(object, OBJECT_FACTORY, OBJECT_WRAPPER_FACTORY, REFLECTOR_FACTORY);
     }
-    public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory){
+
+    public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory, ReflectorFactory reflectorFactory) {
         if (object == null) {
             return SystemMetaObject.NULL_META_OBJECT;
         } else {

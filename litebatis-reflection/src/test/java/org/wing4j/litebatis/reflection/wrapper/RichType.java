@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class RichType {
 
-  private RichType richType;
-
   private String richField;
 
   private String richProperty;
@@ -20,14 +18,6 @@ public class RichType {
       add("bar");
     }
   };
-
-  public RichType getRichType() {
-    return richType;
-  }
-
-  public void setRichType(RichType richType) {
-    this.richType = richType;
-  }
 
   public String getRichProperty() {
     return richProperty;

@@ -1,5 +1,6 @@
 package org.wing4j.litebatis.reflection.wrapper;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.wing4j.litebatis.reflection.factory.MetaObjectFactory;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
@@ -33,10 +34,9 @@ public class MapWrapperTest {
         map.put("key1","val1");
         map.put("key2","val2");
         MapWrapper mapWrapper = new MapWrapper(MetaObjectFactory.forObject(map), map);
-        System.out.println(mapWrapper.getGetterNames()[0]);
-        System.out.println(mapWrapper.getSetterNames()[1]);
-        PropertyTokenizer propertyTokenizer = new PropertyTokenizer("map[0]");
-        Object val = mapWrapper.get(propertyTokenizer);
+        PropertyTokenizer propertyTokenizer = new PropertyTokenizer("key1");
+        Object val1 = mapWrapper.get(propertyTokenizer);
+        Assert.assertEquals("val1", val1);
     }
 
     @Test

@@ -33,10 +33,18 @@ public final class PropertyNamer {
 //    if (name.length() == 1 || (name.length() > 1 && !Character.isUpperCase(name.charAt(1)))) {
 //      name = name.substring(0, 1).toLowerCase(Locale.ENGLISH) + name.substring(1);
 //    }
-
+    name = firstLowerCase(name);
     return name;
   }
 
+  static String firstLowerCase(String value){
+    if(value == null || value.length() < 1){
+      return value;
+    }
+    char[] chars = value.toCharArray();
+    chars[0] = Character.toLowerCase(chars[0]);
+    return new String(chars);
+  }
   public static boolean isProperty(String name) {
     return name.startsWith("get") || name.startsWith("set") || name.startsWith("is");
   }

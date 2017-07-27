@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.wing4j.litebatis</groupId>
         <artifactId>litebatis</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <artifactId>litebatis-dynamic</artifactId>
     <name>litebatis动态语句支持</name>
