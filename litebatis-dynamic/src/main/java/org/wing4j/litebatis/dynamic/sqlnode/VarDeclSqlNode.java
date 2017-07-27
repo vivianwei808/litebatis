@@ -1,7 +1,8 @@
-package org.wing4j.litebatis.scripting.xmltag;
+package org.wing4j.litebatis.dynamic.sqlnode;
 
 import org.wing4j.litebatis.scripting.DynamicContext;
 import org.wing4j.litebatis.scripting.SqlNode;
+import org.wing4j.litebatis.dynamic.OgnlCache;
 
 public class VarDeclSqlNode implements SqlNode {
 

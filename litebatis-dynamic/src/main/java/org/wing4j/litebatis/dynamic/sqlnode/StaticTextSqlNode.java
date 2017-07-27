@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.scripting.xmltag;
+package org.wing4j.litebatis.dynamic.sqlnode;
 
 import lombok.AllArgsConstructor;
 import org.wing4j.litebatis.scripting.DynamicContext;

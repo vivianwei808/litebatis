@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.scripting.xmltag;
+package org.wing4j.litebatis.dynamic;
 
 import org.wing4j.litebatis.exception.BuilderException;
 

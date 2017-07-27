@@ -1,23 +1,20 @@
-package org.wing4j.litebatis;
+package org.wing4j.litebatis.dynamic;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.Test;
+import org.wing4j.litebatis.Configuration;
 import org.wing4j.litebatis.configuration.DefaultConfiguration;
 import org.wing4j.litebatis.executor.SimpleExecutor;
 import org.wing4j.litebatis.mapping.DefaultMappedStatement;
-import org.wing4j.litebatis.mapping.DefaultParameterMapping;
 import org.wing4j.litebatis.mapping.StatementType;
 import org.wing4j.litebatis.scripting.RawSqlSource;
 import org.wing4j.litebatis.scripting.SqlNode;
-import org.wing4j.litebatis.scripting.xmltag.DynamicSqlSource;
-import org.wing4j.litebatis.scripting.xmltag.MixedSqlNode;
-import org.wing4j.litebatis.scripting.xmltag.StaticTextSqlNode;
+import org.wing4j.litebatis.dynamic.sqlnode.MixedSqlNode;
+import org.wing4j.litebatis.dynamic.sqlnode.StaticTextSqlNode;
 import org.wing4j.litebatis.session.SqlSession;
 import org.wing4j.litebatis.session.defaults.DefaultSqlSession;
 import org.wing4j.litebatis.transaction.TransactionIsolationLevel;
 import org.wing4j.litebatis.transaction.jdbc.JdbcTransaction;
-import org.wing4j.litebatis.type.JdbcType;
-import org.wing4j.litebatis.type.StringTypeHandler;
 
 import java.util.Arrays;
 
