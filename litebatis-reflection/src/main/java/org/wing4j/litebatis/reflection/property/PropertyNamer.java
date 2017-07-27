@@ -1,6 +1,7 @@
 package org.wing4j.litebatis.reflection.property;
 
 import org.wing4j.litebatis.reflection.exception.ReflectionException;
+import org.wing4j.litebatis.reflection.utils.StringUtils;
 
 import java.util.Locale;
 
@@ -29,22 +30,11 @@ public final class PropertyNamer {
     } else {
       throw new ReflectionException("Error parsing property name '" + name + "'.  Didn't start with 'is', 'get' or 'set'.");
     }
-
-//    if (name.length() == 1 || (name.length() > 1 && !Character.isUpperCase(name.charAt(1)))) {
-//      name = name.substring(0, 1).toLowerCase(Locale.ENGLISH) + name.substring(1);
-//    }
-    name = firstLowerCase(name);
+    name = StringUtils.toFirstLowerCase(name);
     return name;
   }
 
-  static String firstLowerCase(String value){
-    if(value == null || value.length() < 1){
-      return value;
-    }
-    char[] chars = value.toCharArray();
-    chars[0] = Character.toLowerCase(chars[0]);
-    return new String(chars);
-  }
+
   public static boolean isProperty(String name) {
     return name.startsWith("get") || name.startsWith("set") || name.startsWith("is");
   }

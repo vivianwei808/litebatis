@@ -5,6 +5,7 @@ import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.invoker.SetFieldInvoker;
 import org.wing4j.litebatis.reflection.property.PropertyNamer;
+import org.wing4j.litebatis.reflection.utils.StringUtils;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -25,8 +26,6 @@ public class DefaultReflector implements Reflector {
     private Map<String, Class<?>> getTypes = new HashMap<String, Class<?>>();
     private Constructor<?> defaultConstructor;
 
-    private Map<String, String> caseInsensitivePropertyMap = new HashMap<String, String>();
-
     public DefaultReflector(Class<?> clazz) {
         type = clazz;
         addDefaultConstructor(clazz);
@@ -35,12 +34,6 @@ public class DefaultReflector implements Reflector {
         addFields(clazz);
         readablePropertyNames = getMethods.keySet().toArray(new String[getMethods.keySet().size()]);
         writablePropertyNames = setMethods.keySet().toArray(new String[setMethods.keySet().size()]);
-        for (String propName : readablePropertyNames) {
-            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
-        }
-        for (String propName : writablePropertyNames) {
-            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
-        }
     }
 
     private void addDefaultConstructor(Class<?> clazz) {
@@ -424,6 +417,8 @@ public class DefaultReflector implements Reflector {
     }
 
     public String findPropertyName(String name) {
-        return caseInsensitivePropertyMap.get(name.toUpperCase(Locale.ENGLISH));
+        return StringUtils.toCamelCase(name);
     }
+
+
 }
