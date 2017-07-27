@@ -2,10 +2,11 @@ package org.wing4j.litebatis.builder;
 
 import org.wing4j.litebatis.exception.BuilderException;
 import org.wing4j.litebatis.Configuration;
-import org.wing4j.litebatis.JdbcType;
 import org.wing4j.litebatis.mapping.ParameterMode;
 import org.wing4j.litebatis.mapping.ResultSetType;
-import org.wing4j.litebatis.type.TypeAliasRegistry;
+import org.wing4j.litebatis.reflection.TypeAliasRegistry;
+import org.wing4j.litebatis.reflection.factory.TypeAliasRegistryFactory;
+import org.wing4j.litebatis.type.JdbcType;
 import org.wing4j.litebatis.type.TypeHandler;
 import org.wing4j.litebatis.type.TypeHandlerRegistry;
 
@@ -21,7 +22,7 @@ public abstract class BaseBuilder {
 
   public BaseBuilder(Configuration configuration) {
     this.configuration = configuration;
-    this.typeAliasRegistry = this.configuration.getTypeAliasRegistry();
+    this.typeAliasRegistry = TypeAliasRegistryFactory.getInstance();
     this.typeHandlerRegistry = this.configuration.getTypeHandlerRegistry();
   }
 

@@ -14,17 +14,17 @@
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
             <artifactId>litebatis-api</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
             <artifactId>litebatis-core</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.wing4j.litebatis</groupId>
             <artifactId>litebatis-dynamic</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 </project>

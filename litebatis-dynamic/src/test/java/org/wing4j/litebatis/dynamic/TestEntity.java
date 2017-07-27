@@ -1,4 +1,4 @@
-package org.wing4j.litebatis;
+package org.wing4j.litebatis.dynamic;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

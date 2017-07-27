@@ -1,4 +1,4 @@
-package org.wing4j.litebatis.scripting.xmltag;
+package org.wing4j.litebatis.dynamic;
 
 import lombok.AllArgsConstructor;
 import org.wing4j.litebatis.Configuration;
@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * Created by wing4j on 2017/5/21.
+ * 动态SQL数据源
  */
 @AllArgsConstructor
 public class DynamicSqlSource implements SqlSource {
