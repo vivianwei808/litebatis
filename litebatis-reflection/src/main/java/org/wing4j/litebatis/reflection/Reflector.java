@@ -77,11 +77,4 @@ public interface Reflector {
      * @return
      */
     boolean hasGetter(String propertyName);
-
-    /**
-     * 根据大写的属性名获取驼峰命名的属性
-     * @param name
-     * @return
-     */
-    String findPropertyName(String name);
 }

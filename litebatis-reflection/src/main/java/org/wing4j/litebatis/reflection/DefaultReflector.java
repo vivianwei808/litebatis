@@ -5,7 +5,6 @@ import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.invoker.SetFieldInvoker;
 import org.wing4j.litebatis.reflection.property.PropertyNamer;
-import org.wing4j.litebatis.reflection.utils.StringUtils;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -230,15 +229,6 @@ public class DefaultReflector implements Reflector {
         return !(name.startsWith("$") || "serialVersionUID".equals(name) || "class".equals(name));
     }
 
-    /*
-     * This method returns an array containing all methods
-     * declared in this class and any superclass.
-     * We use this method, instead of the simpler Class.getMethods(),
-     * because we want to look for private methods as well.
-     *
-     * @param cls The class
-     * @return An array containing all methods in this class
-     */
     private Method[] getClassMethods(Class<?> cls) {
         Map<String, Method> uniqueMethods = new HashMap<String, Method>();
         Class<?> currentClass = cls;
@@ -313,11 +303,6 @@ public class DefaultReflector implements Reflector {
         return true;
     }
 
-    /*
-     * Gets the name of the class the instance provides information for
-     *
-     * @return The class name
-     */
     public Class<?> getType() {
         return type;
     }
@@ -350,12 +335,6 @@ public class DefaultReflector implements Reflector {
         return method;
     }
 
-    /*
-     * Gets the type for a property setter
-     *
-     * @param propertyName - the name of the property
-     * @return The Class of the propery setter
-     */
     public Class<?> getSetterType(String propertyName) {
         Class<?> clazz = setTypes.get(propertyName);
         if (clazz == null) {
@@ -364,12 +343,6 @@ public class DefaultReflector implements Reflector {
         return clazz;
     }
 
-    /*
-     * Gets the type for a property getter
-     *
-     * @param propertyName - the name of the property
-     * @return The Class of the propery getter
-     */
     public Class<?> getGetterType(String propertyName) {
         Class<?> clazz = getTypes.get(propertyName);
         if (clazz == null) {
@@ -378,47 +351,20 @@ public class DefaultReflector implements Reflector {
         return clazz;
     }
 
-    /*
-     * Gets an array of the readable properties for an object
-     *
-     * @return The array
-     */
     public String[] getGettablePropertyNames() {
         return readablePropertyNames;
     }
 
-    /*
-     * Gets an array of the writeable properties for an object
-     *
-     * @return The array
-     */
     public String[] getSettablePropertyNames() {
         return writablePropertyNames;
     }
 
-    /*
-     * Check to see if a class has a writeable property by name
-     *
-     * @param propertyName - the name of the property to check
-     * @return True if the object has a writeable property by the name
-     */
     public boolean hasSetter(String propertyName) {
         return setMethods.keySet().contains(propertyName);
     }
 
-    /*
-     * Check to see if a class has a readable property by name
-     *
-     * @param propertyName - the name of the property to check
-     * @return True if the object has a readable property by the name
-     */
     public boolean hasGetter(String propertyName) {
         return getMethods.keySet().contains(propertyName);
     }
-
-    public String findPropertyName(String name) {
-        return StringUtils.toCamelCase(name);
-    }
-
 
 }

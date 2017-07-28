@@ -4,6 +4,7 @@ import org.wing4j.litebatis.reflection.factory.MetaClassFactory;
 import org.wing4j.litebatis.reflection.invoker.GetFieldInvoker;
 import org.wing4j.litebatis.reflection.invoker.MethodInvoker;
 import org.wing4j.litebatis.reflection.property.PropertyTokenizer;
+import org.wing4j.litebatis.reflection.utils.StringUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -182,7 +183,7 @@ public class DefaultMetaClass implements MetaClass{
     public StringBuilder buildProperty(String name, StringBuilder builder) {
         PropertyTokenizer prop = new PropertyTokenizer(name);
         if (prop.hasNext()) {
-            String propertyName = reflector.findPropertyName(prop.getName());
+            String propertyName = StringUtils.toCamelCase(prop.getName());
             if (propertyName != null) {
                 builder.append(propertyName);
                 builder.append(".");
@@ -190,7 +191,7 @@ public class DefaultMetaClass implements MetaClass{
                 metaProp.buildProperty(prop.getChildren(), builder);
             }
         } else {
-            String propertyName = reflector.findPropertyName(name);
+            String propertyName = StringUtils.toCamelCase(name);
             if (propertyName != null) {
                 builder.append(propertyName);
             }
